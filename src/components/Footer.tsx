@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin } from 'lucide-react';
+import { GraduationCap, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -16,6 +16,15 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm">
               Empowering students since 2021 with quality education and personalized learning experiences.
             </p>
+            <a
+              href="https://www.instagram.com/scholarshubgoa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
+              <span className="text-sm">@scholarshubgoa</span>
+            </a>
           </div>
 
           <div>
