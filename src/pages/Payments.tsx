@@ -3,7 +3,7 @@ import SectionTitle from '@/components/SectionTitle';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { CheckCircle2, CreditCard, Phone, Building2 } from 'lucide-react';
+import { CheckCircle2, CreditCard, Phone, Building2, Smartphone } from 'lucide-react';
 
 const plans = [
   {
@@ -82,8 +82,16 @@ const PricingCard = ({ plan, index }: PricingCardProps) => {
             variant={plan.popular ? 'hero' : 'default'}
             size="lg"
             className="w-full"
+            asChild
           >
-            Enroll Now
+            <a
+              href="https://wa.me/918830368198?text=Hi, I want to enroll for the course: ${plan.name} (${plan.price}/month)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Smartphone className="mr-2 h-4 w-4" />
+              Pay via UPI
+            </a>
           </Button>
         </CardContent>
       </Card>
@@ -93,14 +101,14 @@ const PricingCard = ({ plan, index }: PricingCardProps) => {
 
 const paymentMethods = [
   {
-    icon: CreditCard,
-    title: 'Online Payment',
-    description: 'Pay securely using credit/debit cards, UPI, or net banking.',
+    icon: Smartphone,
+    title: 'UPI Payment',
+    description: 'Pay instantly via Google Pay, PhonePe, Paytm, or any UPI app.',
   },
   {
     icon: Phone,
-    title: 'UPI Payment',
-    description: 'Quick payment via Google Pay, PhonePe, or Paytm.',
+    title: 'WhatsApp',
+    description: 'Contact us on WhatsApp for payment details and enrollment.',
   },
   {
     icon: Building2,
