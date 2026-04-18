@@ -1,5 +1,7 @@
 import Layout from '@/components/Layout';
 import SectionTitle from '@/components/SectionTitle';
+import SEO from '@/components/SEO';
+import { localBusinessJsonLd } from '@/lib/structuredData';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -67,6 +69,12 @@ const About = () => {
 
   return (
     <Layout>
+      <SEO
+        title="About Schoolars Hub — Goa's Trusted Tuition Centre Since 2021"
+        description="Founded in 2021 in Thivim & Corlim, Goa. Meet our team of dedicated educators delivering personalized coaching across 7 subjects with a 5.0★ Google rating."
+        canonical="/about"
+        jsonLd={localBusinessJsonLd}
+      />
       {/* Hero */}
       <section className="py-20 bg-card">
         <div className="container px-4">

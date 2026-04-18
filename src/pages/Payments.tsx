@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import SectionTitle from '@/components/SectionTitle';
+import SEO from '@/components/SEO';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -118,6 +119,11 @@ const paymentMethods = [
 const Payments = () => {
   return (
     <Layout>
+      <SEO
+        title="Tuition Fees & Payments | Schoolars Hub Goa"
+        description="Affordable tuition fees: ₹700/month (Class 5-8), ₹1,000/month (Class 9-10). Pay instantly via UPI, WhatsApp or bank transfer."
+        canonical="/payments"
+      />
       {/* Hero */}
       <section className="py-20 bg-card">
         <div className="container px-4">

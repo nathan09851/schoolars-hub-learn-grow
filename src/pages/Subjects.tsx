@@ -131,6 +131,11 @@ const SubjectDetailCard = ({ subject, index }: SubjectDetailCardProps) => {
 const Subjects = () => {
   return (
     <Layout>
+      <SEO
+        title="Subjects We Teach — Science, Maths, English & More | Schoolars Hub"
+        description="Comprehensive tuition coaching in Science, Mathematics, English, Hindi, Konkani, Geography and History for Classes 1–12. Expert teachers, proven results."
+        canonical="/subjects"
+      />
       {/* Hero */}
       <section className="py-20 bg-card">
         <div className="container px-4">
