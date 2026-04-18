@@ -23,7 +23,6 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       <Footer />
-      <WhatsAppButton />
       <VoiceAgent />
     </div>
   );

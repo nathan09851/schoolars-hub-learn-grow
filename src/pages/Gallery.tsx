@@ -9,7 +9,7 @@ const galleryImages = [
   { id: 1, src: "/gallery/media__1776553220783.jpg", alt: "Students engaged in a class discussion" },
   { id: 2, src: "/gallery/media__1776553220792.jpg", alt: "Student eating a snack during break" },
   { id: 3, src: "/gallery/media__1776553221092.jpg", alt: "Students talking near the campus garden" },
-  { id: 4, src: "/gallery/media__1776553221130.jpg", alt: "Parents and teachers interacting" },
+  { id: 4, src: "/gallery/media__1776555466477.jpg", alt: "Student with a backpack" },
   { id: 5, src: "/gallery/media__1776553221134.jpg", alt: "Students enjoying outdoor time" },
 ];
 

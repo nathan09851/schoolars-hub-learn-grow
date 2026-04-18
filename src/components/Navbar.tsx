@@ -78,6 +78,16 @@ const Navbar = () => {
             >
               <Link to="/payments">Enroll now</Link>
             </Button>
+            <a
+              aria-label="Chat with Schoolars Hub on WhatsApp"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-[1.03] hover:bg-[#1fb95a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+              href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hi, I would like to know more about Schoolars Hub tuition classes.")}`}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0zm0 0a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0-5-5z"/></svg>
+              <span>WhatsApp us</span>
+            </a>
           </div>
 
           <button
