@@ -6,6 +6,7 @@ interface SectionTitleProps {
   eyebrow?: string;
   centered?: boolean;
   className?: string;
+  id?: string;
 }
 
 const SectionTitle = ({
@@ -14,6 +15,7 @@ const SectionTitle = ({
   eyebrow,
   centered = true,
   className,
+  id,
 }: SectionTitleProps) => {
   const { ref, isVisible } = useScrollAnimation();
 
@@ -21,7 +23,7 @@ const SectionTitle = ({
     <div
       ref={ref}
       className={[
-        "space-y-5 opacity-0",
+        "space-y-4 opacity-0",
         isVisible ? "animate-fade-in" : "",
         centered ? "text-center" : "",
         className,
@@ -29,15 +31,22 @@ const SectionTitle = ({
         .filter(Boolean)
         .join(" ")}
     >
-      {eyebrow ? <div className="section-eyebrow">{eyebrow}</div> : null}
-      <div className="space-y-4">
-        <h2 className="font-serif text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+      {eyebrow ? (
+        <div className={centered ? "flex justify-center" : ""}>
+          <div className="section-eyebrow">{eyebrow}</div>
+        </div>
+      ) : null}
+      <div className="space-y-3">
+        <h2
+          id={id}
+          className="font-serif text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
+        >
           {title}
         </h2>
         {subtitle ? (
           <p
-            className={`text-base leading-7 text-muted-foreground md:text-lg ${
-              centered ? "mx-auto max-w-3xl" : "max-w-2xl"
+            className={`text-base leading-7 text-muted-foreground md:text-[17px] ${
+              centered ? "mx-auto max-w-2xl" : "max-w-xl"
             }`}
           >
             {subtitle}
@@ -45,7 +54,8 @@ const SectionTitle = ({
         ) : null}
       </div>
       <div
-        className={`h-1.5 w-24 rounded-full bg-gradient-to-r from-primary via-chart-2 to-chart-3 ${
+        aria-hidden="true"
+        className={`h-1 w-16 rounded-full bg-gradient-to-r from-primary via-chart-2 to-chart-3 ${
           centered ? "mx-auto" : ""
         }`}
       />

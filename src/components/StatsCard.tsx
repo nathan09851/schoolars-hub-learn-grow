@@ -20,13 +20,16 @@ const StatsCard = ({ icon: Icon, value, label, delay = 0 }: StatsCardProps) => {
       }`}
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div className="mb-4 inline-flex rounded-2xl bg-amber-100 p-3 text-amber-700 shadow-sm">
+      <div
+        aria-hidden="true"
+        className="mb-3 inline-flex rounded-xl bg-amber-100 p-2.5 text-amber-700 shadow-sm"
+      >
         <Icon className="h-5 w-5" />
       </div>
-      <p className="font-serif text-3xl font-semibold text-foreground md:text-4xl">
+      <p className="font-serif text-3xl font-bold text-foreground">
         {value}
       </p>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{label}</p>
+      <p className="mt-1.5 text-sm leading-6 text-muted-foreground">{label}</p>
     </article>
   );
 };

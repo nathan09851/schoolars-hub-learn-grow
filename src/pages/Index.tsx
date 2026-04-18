@@ -1,10 +1,10 @@
 import {
   ArrowRight,
   BadgeCheck,
-  BookMarked,
   Clock3,
   MapPin,
   ShieldCheck,
+  Star,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -43,65 +43,88 @@ const Index = () => {
     <Layout>
       <SEO
         canonical="/"
-        description="Schoolars Hub offers structured tuition support in Goa with a stronger parent experience, transparent fees, and secure inquiry flow."
+        description="Schoolars Hub offers structured tuition support in Goa with transparent fees, expert teachers, and a secure inquiry flow for parents."
         jsonLd={localBusinessJsonLd}
-        title="Schoolars Hub | Tuition support in Goa with stronger parent trust"
+        title="Schoolars Hub | Quality Tuition Coaching in Goa since 2021"
       />
 
-      <section className="section-shell overflow-hidden pt-6 md:pt-10">
+      {/* ── Hero ── */}
+      <section
+        className="section-shell overflow-hidden pt-6 md:pt-10"
+        aria-label="Hero section"
+      >
         <div className="container px-4">
-          <div className="hero-glow relative overflow-hidden rounded-[36px] border border-white/12 px-6 py-8 text-white shadow-2xl sm:px-8 lg:px-10 lg:py-10">
-            <div className="absolute inset-y-0 right-0 hidden w-[42%] lg:block">
+          <div className="hero-glow relative overflow-hidden rounded-[36px] border border-white/12 shadow-2xl">
+            {/* Full-bleed hero image — clearly visible */}
+            <div className="absolute inset-0">
               <img
-                alt="Students learning together at Schoolars Hub"
-                className="h-full w-full object-cover opacity-30"
+                alt="Schoolars Hub students and teachers at the coaching centre in Goa"
+                className="h-full w-full object-cover object-center"
                 height={1080}
                 loading="eager"
                 src={heroImage}
-                width={1080}
+                width={1920}
               />
+              {/* dark overlay so text stays readable */}
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30" />
             </div>
 
-            <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-              <div className="max-w-3xl space-y-8">
+            {/* Content grid */}
+            <div className="relative grid gap-8 px-6 py-10 text-white sm:px-8 lg:grid-cols-[1fr_420px] lg:items-start lg:px-10 lg:py-12">
+              {/* Left column — headline + CTAs */}
+              <div className="max-w-2xl space-y-7">
+                {/* eyebrow */}
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="section-eyebrow border-white/15 bg-white/10 text-white/78">
-                    Since {siteConfig.foundedYear}
+                  <div className="section-eyebrow border-white/15 bg-white/10 text-white/80">
+                    Since {siteConfig.foundedYear} · Goa
                   </div>
-                  <div className="rounded-[24px] border border-white/12 bg-white/8 px-4 py-3">
+                  <div className="hidden rounded-[22px] border border-white/12 bg-white/8 px-4 py-2.5 sm:block">
                     <BrandMark dark showSubtitle={false} compact />
                   </div>
                 </div>
 
-                <div className="space-y-5">
-                  <h1 className="font-serif text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
-                    Tuition support that feels clear, credible, and parent-ready.
-                  </h1>
-                  <p className="max-w-2xl text-base leading-7 text-white/76 md:text-lg">
-                    {siteConfig.brandDisplayName} helps students across Goa stay on
-                    top of schoolwork with focused subject guidance, cleaner
-                    enrollment steps, and a stronger experience for families from
-                    first visit to follow-up.
-                  </p>
-                </div>
+                {/* headline */}
+                <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                  Tuition that's clear,
+                  <br />
+                  <span className="text-amber-300">trusted by families.</span>
+                </h1>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <p className="max-w-xl text-base leading-7 text-white/78 md:text-lg">
+                  {siteConfig.brandDisplayName} helps students across Goa stay
+                  on top of schoolwork with focused subject guidance and
+                  transparent enrollment — so parents always know what to expect.
+                </p>
+
+                {/* highlights */}
+                <ul className="grid gap-2.5 sm:grid-cols-2" role="list">
                   {heroHighlights.map((highlight) => (
-                    <div
-                      className="flex items-start gap-3 rounded-[22px] border border-white/12 bg-white/8 px-4 py-4"
+                    <li
+                      className="flex items-start gap-2.5 rounded-2xl border border-white/12 bg-white/8 px-4 py-3"
                       key={highlight}
                     >
-                      <BadgeCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-300" />
-                      <p className="text-sm leading-6 text-white/82">{highlight}</p>
-                    </div>
+                      <BadgeCheck
+                        aria-hidden="true"
+                        className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-300"
+                      />
+                      <span className="text-sm leading-6 text-white/82">
+                        {highlight}
+                      </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
+                {/* CTAs */}
                 <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button className="min-h-12 rounded-full px-7" size="xl" variant="hero" asChild>
+                  <Button
+                    className="min-h-12 rounded-full px-7"
+                    size="xl"
+                    variant="hero"
+                    asChild
+                  >
                     <Link to="/payments">
                       View fees and enroll
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" />
                     </Link>
                   </Button>
                   <Button
@@ -114,68 +137,65 @@ const Index = () => {
                   </Button>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-3">
-                  <Card className="border-white/12 bg-white/10 text-white shadow-none">
-                    <CardContent className="flex items-center gap-3 p-4">
-                      <ShieldCheck className="h-5 w-5 text-amber-300" />
-                      <div>
-                        <p className="text-sm font-semibold">Secure inquiry path</p>
-                        <p className="text-xs text-white/65">
-                          Validated form flow for parent requests
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <Card className="border-white/12 bg-white/10 text-white shadow-none">
-                    <CardContent className="flex items-center gap-3 p-4">
-                      <Clock3 className="h-5 w-5 text-cyan-300" />
-                      <div>
-                        <p className="text-sm font-semibold">Clear timings</p>
-                        <p className="text-xs text-white/65">
-                          Regular and exam-time schedules explained
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <Card className="border-white/12 bg-white/10 text-white shadow-none">
-                    <CardContent className="flex items-center gap-3 p-4">
-                      <MapPin className="h-5 w-5 text-emerald-300" />
-                      <div>
-                        <p className="text-sm font-semibold">Two Goa centres</p>
-                        <p className="text-xs text-white/65">
-                          Thivim and Corlim campus access
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-[1.1fr_0.9fr]">
-                  <div className="rounded-[24px] border border-white/12 bg-white/8 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200/80">
-                      Brand promise
-                    </p>
-                    <p className="mt-3 text-sm leading-7 text-white/76">
-                      A warmer, more intentional identity now carries through the
-                      site, with the coaching-centre logo anchored into the hero
-                      instead of feeling disconnected from the pages below.
+                {/* quick trust badges */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2.5">
+                    <ShieldCheck
+                      aria-hidden="true"
+                      className="h-4 w-4 flex-shrink-0 text-amber-300"
+                    />
+                    <p className="text-xs font-medium leading-tight text-white/82">
+                      Secure inquiry
                     </p>
                   </div>
-                  <div className="rounded-[24px] border border-white/12 bg-white/8 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/80">
-                      Designed with skills
+                  <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2.5">
+                    <Clock3
+                      aria-hidden="true"
+                      className="h-4 w-4 flex-shrink-0 text-cyan-300"
+                    />
+                    <p className="text-xs font-medium leading-tight text-white/82">
+                      Clear timings
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-white/76">
-                      `frontend-design` shaped the branded presentation, GitHub
-                      repo context kept the work aligned, and a new site skill now
-                      captures the project rules for future iterations.
+                  </div>
+                  <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-3 py-2.5">
+                    <MapPin
+                      aria-hidden="true"
+                      className="h-4 w-4 flex-shrink-0 text-emerald-300"
+                    />
+                    <p className="text-xs font-medium leading-tight text-white/82">
+                      2 Goa centres
                     </p>
                   </div>
                 </div>
+
+                {/* Google rating strip */}
+                <a
+                  className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-sm text-white/80 transition hover:bg-white/14"
+                  href={siteConfig.googleReviewsUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                  aria-label="View our Google reviews — 5 stars from 40+ reviews"
+                >
+                  <span
+                    className="flex gap-0.5"
+                    aria-hidden="true"
+                  >
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-3.5 w-3.5 fill-amber-400 text-amber-400"
+                      />
+                    ))}
+                  </span>
+                  <span className="font-semibold">5.0</span>
+                  <span className="text-white/60">· 40+ Google reviews</span>
+                </a>
               </div>
 
+              {/* Right column — inquiry form */}
               <InquiryForm
                 defaultIntent="callback"
-                description="Ask about class fit, fee details, timings, or subject support. The form is designed to be clearer for parents and safer for the backend."
+                description="Ask about class fit, fee details, timings, or subject support."
                 sourcePage="home-hero"
                 title="Request a callback"
               />
@@ -184,9 +204,10 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-shell pt-8">
+      {/* ── Proof Stats ── */}
+      <section className="section-shell pt-8" aria-label="Key statistics">
         <div className="container px-4">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {proofStats.map((stat, index) => (
               <StatsCard
                 delay={index * 100}
@@ -200,28 +221,33 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-shell">
+      {/* ── Trust signals ── */}
+      <section className="section-shell" aria-labelledby="trust-heading">
         <div className="container px-4">
           <SectionTitle
-            eyebrow="Why this redesign matters"
-            subtitle="The site now does a better job of reducing parent uncertainty, showing proof, and guiding families toward the right next step."
-            title="A calmer and more trustworthy journey for families"
+            eyebrow="Why families choose us"
+            id="trust-heading"
+            subtitle="Transparent fees, regular parent updates, and focused teaching across 7 subjects — designed to reduce guesswork for families."
+            title="A calmer, more trustworthy experience"
           />
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {trustSignals.map((signal) => {
               const Icon = signal.icon;
               return (
                 <Card
-                  className="mesh-border rounded-[28px] border-white/50 bg-white/85 shadow-lg"
+                  className="mesh-border rounded-[24px] border-white/50 bg-white/85 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   key={signal.title}
                 >
-                  <CardContent className="space-y-5 p-6">
-                    <div className="inline-flex rounded-2xl bg-slate-950 p-3 text-amber-300">
+                  <CardContent className="space-y-4 p-6">
+                    <div
+                      aria-hidden="true"
+                      className="inline-flex rounded-2xl bg-slate-950 p-3 text-amber-300"
+                    >
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div className="space-y-3">
-                      <h3 className="font-serif text-2xl font-semibold text-foreground">
+                    <div className="space-y-2">
+                      <h3 className="font-serif text-xl font-semibold text-foreground">
                         {signal.title}
                       </h3>
                       <p className="text-sm leading-7 text-muted-foreground">
@@ -236,19 +262,21 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-shell">
+      {/* ── Subjects ── */}
+      <section className="section-shell" aria-labelledby="subjects-heading">
         <div className="container px-4">
           <SectionTitle
             eyebrow="Subject coverage"
-            subtitle="Every subject card now explains grade fit and expected outcomes, which makes the offer much clearer for both parents and students."
-            title="Subjects presented with more clarity"
+            id="subjects-heading"
+            subtitle="Comprehensive tuition across 7 subjects, from Classes 1 to 12. Each subject card explains grade fit and expected learning outcomes."
+            title="Subjects taught with clarity"
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {subjects.map((subject, index) => (
               <SubjectCard
                 accent={subject.accent}
-                delay={index * 70}
+                delay={index * 60}
                 description={subject.description}
                 grades={subject.grades}
                 icon={subject.icon}
@@ -258,66 +286,80 @@ const Index = () => {
               />
             ))}
           </div>
+
+          <div className="mt-8 flex justify-center">
+            <Button className="rounded-full px-7" size="lg" variant="outline" asChild>
+              <Link to="/subjects">
+                See all subject details
+                <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      <section className="section-shell">
+      {/* ── How it works + Campus + Inquiry ── */}
+      <section className="section-shell" aria-labelledby="process-heading">
         <div className="container px-4">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="surface-panel mesh-border p-7 md:p-8">
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Learning flow */}
+            <div className="surface-panel mesh-border space-y-6 p-7 md:p-8">
               <SectionTitle
                 centered={false}
-                eyebrow="Learning flow"
-                subtitle="This part of the experience has been rewritten to explain the operational side of the tuition centre in a more structured way."
-                title="How families move from inquiry to enrollment"
+                eyebrow="How it works"
+                id="process-heading"
+                subtitle="From your first inquiry to your child's first class — the journey is designed to be straightforward."
+                title="Three simple steps to enrollment"
               />
 
-              <div className="mt-10 space-y-5">
+              <ol className="space-y-4" aria-label="Enrollment steps">
                 {learningApproach.map((item) => (
-                  <div
-                    className="rounded-[24px] border border-slate-900/8 bg-slate-50/70 p-5"
+                  <li
+                    className="rounded-[20px] border border-slate-900/8 bg-slate-50/80 p-5"
                     key={item.step}
                   >
-                    <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">
+                    <div className="text-xs font-bold uppercase tracking-[0.24em] text-amber-600">
                       Step {item.step}
                     </div>
-                    <h3 className="mt-2 font-serif text-2xl font-semibold text-foreground">
+                    <h3 className="mt-2 font-serif text-lg font-semibold text-foreground">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
                       {item.description}
                     </p>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </div>
 
-            <div className="grid gap-6">
-              <div className="surface-panel mesh-border overflow-hidden">
-                <div className="grid gap-0 md:grid-cols-[1.1fr_0.9fr]">
-                  <div className="p-7 md:p-8">
-                    <div className="section-eyebrow">Campus access</div>
-                    <h3 className="mt-5 font-serif text-3xl font-semibold text-foreground">
-                      Better location clarity for parents
+            {/* Campus info + mid-page form */}
+            <div className="flex flex-col gap-5">
+              {/* Campus locations */}
+              <div className="surface-panel mesh-border overflow-hidden rounded-[28px]">
+                <div className="grid md:grid-cols-2">
+                  <div className="p-6 md:p-7">
+                    <div className="section-eyebrow mb-4">Campus access</div>
+                    <h3 className="font-serif text-2xl font-semibold text-foreground">
+                      Two Goa locations
                     </h3>
-                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                      The site now treats locations as a decision aid rather than a
-                      footnote, helping families quickly judge convenience and fit.
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                      Choose the centre closest to you. Both campuses run the same
+                      structured curriculum with the same teacher team.
                     </p>
 
-                    <div className="mt-8 grid gap-4">
+                    <div className="mt-5 space-y-3">
                       {campusLocations.map((location) => (
                         <div
-                          className="rounded-[22px] border border-slate-900/8 bg-slate-50/70 p-5"
+                          className="rounded-[18px] border border-slate-900/8 bg-slate-50/80 p-4"
                           key={location.name}
                         >
                           <h4 className="font-semibold text-foreground">
                             {location.name}
                           </h4>
-                          <p className="mt-1 text-sm font-medium text-secondary">
+                          <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-amber-700">
                             {location.area}
                           </p>
-                          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          <p className="mt-2 text-sm leading-6 text-muted-foreground">
                             {location.description}
                           </p>
                         </div>
@@ -325,33 +367,33 @@ const Index = () => {
                     </div>
                   </div>
 
-                  <div className="relative min-h-[320px] bg-slate-950">
+                  {/* Photo panel */}
+                  <div className="relative min-h-[260px] bg-slate-950">
                     <img
-                      alt="Schoolars Hub students standing together at the campus"
-                      className="h-full w-full object-cover opacity-80"
+                      alt="Schoolars Hub students and teachers at the Goa campus"
+                      className="h-full w-full object-cover object-center opacity-85"
                       height={900}
                       loading="lazy"
                       src={heroImage}
                       width={900}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/78">
-                        <BookMarked className="h-3.5 w-3.5" />
-                        Structured after-school support
-                      </div>
-                      <p className="mt-4 text-sm leading-6 text-white/76">
-                        A stronger visual hierarchy now keeps the school identity,
-                        human warmth, and enrollment path in one place.
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                      <p className="text-sm font-medium">
+                        After-school support, 3 PM – 6:30 PM
+                      </p>
+                      <p className="text-xs text-white/65">
+                        Extended to 8 PM during exam periods
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
+              {/* Fee inquiry form */}
               <InquiryForm
                 defaultIntent="fees"
-                description="Parents often need fee details and campus guidance together. This version of the form is tuned for that use case."
+                description="Parents often need fee details and campus guidance together. Ask us directly."
                 sourcePage="home-mid"
                 title="Ask for fee details"
               />
@@ -360,30 +402,47 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-shell">
+      {/* ── Testimonials ── */}
+      <section className="section-shell" aria-labelledby="reviews-heading">
         <div className="container px-4">
           <SectionTitle
-            eyebrow="Proof and reassurance"
-            subtitle="Instead of making users hunt for trust signals, the reviews are now placed where families are deciding whether to reach out."
-            title="What families say about the learning environment"
+            eyebrow="Google reviews"
+            id="reviews-heading"
+            subtitle="Real feedback from students and parents who have experienced learning at Schoolars Hub."
+            title="What families say"
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
-                delay={index * 100}
+                delay={index * 80}
                 key={`${testimonial.name}-${index}`}
                 {...testimonial}
               />
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Button className="rounded-full px-7" size="lg" variant="outline" asChild>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Button
+              className="rounded-full px-7"
+              size="lg"
+              variant="outline"
+              asChild
+            >
               <Link to="/testimonials">Read all testimonials</Link>
             </Button>
-            <Button className="rounded-full px-7" size="lg" variant="hero" asChild>
-              <a href={siteConfig.googleReviewsUrl} rel="noreferrer" target="_blank">
+            <Button
+              className="rounded-full px-7"
+              size="lg"
+              variant="hero"
+              asChild
+            >
+              <a
+                href={siteConfig.googleReviewsUrl}
+                rel="noreferrer"
+                target="_blank"
+                aria-label="View Google reviews for Schoolars Hub (opens in new tab)"
+              >
                 View Google reviews
               </a>
             </Button>
@@ -391,24 +450,27 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-shell">
+      {/* ── FAQs ── */}
+      <section className="section-shell" aria-labelledby="faq-heading">
         <div className="container px-4">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="ink-panel mesh-border p-7 md:p-8">
-              <SectionTitle
-                centered={false}
-                eyebrow="Frequently asked"
-                subtitle="FAQs are now written for decision-making, not just SEO. That means fewer vague statements and more direct answers."
-                title="Common parent questions"
-              />
-            </div>
+          <div className="mx-auto max-w-3xl">
+            <SectionTitle
+              eyebrow="Common questions"
+              id="faq-heading"
+              subtitle="Written to reduce friction and help parents make a confident decision quickly."
+              title="Frequently asked by parents"
+            />
 
-            <Card className="mesh-border rounded-[32px] border-white/50 bg-white/88 shadow-lg">
+            <Card className="mesh-border mt-10 rounded-[28px] border-white/50 bg-white/88 shadow-lg">
               <CardContent className="p-3 sm:p-5">
-                <Accordion className="w-full" collapsible type="single">
+                <Accordion
+                  className="w-full"
+                  collapsible
+                  type="single"
+                >
                   {faqs.map((faq, index) => (
                     <AccordionItem key={faq.question} value={`faq-${index}`}>
-                      <AccordionTrigger className="px-3 text-left text-base font-semibold text-foreground">
+                      <AccordionTrigger className="px-3 text-left text-base font-semibold text-foreground hover:text-primary">
                         {faq.question}
                       </AccordionTrigger>
                       <AccordionContent className="px-3 pb-5 text-sm leading-7 text-muted-foreground">
