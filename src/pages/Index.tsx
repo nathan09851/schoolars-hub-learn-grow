@@ -5,6 +5,8 @@ import SubjectCard from '@/components/SubjectCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import SectionTitle from '@/components/SectionTitle';
 import StatsCard from '@/components/StatsCard';
+import SEO from '@/components/SEO';
+import { localBusinessJsonLd } from '@/lib/structuredData';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import heroImage from '@/assets/hero-education.jpg';
 import {
@@ -92,11 +94,22 @@ const Index = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Schoolars Hub — Quality Tuition Classes in Goa Since 2021"
+        description="Schoolars Hub offers expert tuition coaching in Science, Maths, English, Hindi, Konkani, Geography & History across Goa. 5.0★ on Google with 40+ reviews."
+        canonical="/"
+        jsonLd={localBusinessJsonLd}
+      />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
+        <img
+          src={heroImage}
+          alt="Students learning at Schoolars Hub coaching centre"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          width={1920}
+          height={1080}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-foreground/40" />
         

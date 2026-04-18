@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import SectionTitle from '@/components/SectionTitle';
+import SEO from '@/components/SEO';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
