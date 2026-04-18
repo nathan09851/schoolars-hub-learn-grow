@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SectionTitle from '@/components/SectionTitle';
 import TestimonialCard from '@/components/TestimonialCard';
+import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 
@@ -28,8 +29,32 @@ const testimonials = [
 const GOOGLE_REVIEWS_URL = 'https://share.google/IQD21xKvKrogKBaU4';
 
 const Testimonials = () => {
+  const reviewsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'Schoolars Hub',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      reviewCount: '40',
+      bestRating: '5',
+    },
+    review: testimonials.map((t) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: t.name },
+      reviewRating: { '@type': 'Rating', ratingValue: t.rating, bestRating: 5 },
+      reviewBody: t.content,
+    })),
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Student & Parent Testimonials | Schoolars Hub Goa"
+        description="Read 5★ Google reviews from Schoolars Hub students and parents. 40+ verified reviews celebrating our personal attention and motivating environment."
+        canonical="/testimonials"
+        jsonLd={reviewsJsonLd}
+      />
       {/* Hero */}
       <section className="py-20 bg-card">
         <div className="container px-4">
