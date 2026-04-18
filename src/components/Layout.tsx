@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import WhatsAppButton from "./WhatsAppButton";
+import VoiceAgent from "./VoiceAgent";
 
 interface LayoutProps {
   children: ReactNode;
@@ -23,6 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
       </main>
       <Footer />
       <WhatsAppButton />
+      <VoiceAgent />
     </div>
   );
 };
