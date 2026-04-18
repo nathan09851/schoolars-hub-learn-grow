@@ -1,0 +1,23 @@
+{
+  "skill_name": "schoolars-hub-site",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Refresh the Schoolars Hub homepage so it feels more branded around the coaching-centre logo while staying parent-friendly on mobile.",
+      "expected_output": "A homepage update that uses the logo more intentionally, preserves readability, and keeps the inquiry flow prominent.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Improve the Schoolars Hub payments page so parents understand the plans and next steps before paying.",
+      "expected_output": "A clearer fee-comparison and payment-confirmation experience with stronger trust signals and easy-to-scan mobile layout.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Strengthen the Schoolars Hub inquiry experience without weakening backend safety.",
+      "expected_output": "A UI and backend-aware change that keeps client validation, server validation, and safe public submission patterns aligned.",
+      "files": []
+    }
+  ]
+}

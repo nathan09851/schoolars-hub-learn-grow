@@ -1,6 +1,7 @@
 import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import BrandMark from "@/components/BrandMark";
 import { campusLocations, siteConfig, subjects } from "@/content/site";
 
 const Footer = () => {
@@ -11,22 +12,15 @@ const Footer = () => {
           <div className="grid gap-10 p-8 md:grid-cols-[1.1fr_0.8fr_0.8fr_1fr] md:p-10">
             <div className="space-y-5">
               <Link className="inline-flex items-center gap-3" to="/">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-300 to-orange-500 text-slate-950">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="font-serif text-2xl font-semibold">
-                    {siteConfig.brandName}
-                  </p>
-                  <p className="text-sm uppercase tracking-[0.2em] text-white/55">
-                    Learn. Grow. Stay ahead.
-                  </p>
-                </div>
+                <BrandMark className="items-start" dark />
               </Link>
               <p className="max-w-sm text-sm leading-7 text-white/72">
                 Structured tuition support for students across Goa with clear
                 communication, transparent fees, and a smoother parent journey.
               </p>
+              <div className="inline-flex rounded-full border border-white/15 bg-white/8 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/65">
+                Learn. Grow. Stay ahead.
+              </div>
               <a
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm text-white/78 transition hover:bg-white/12"
                 href={siteConfig.instagram}

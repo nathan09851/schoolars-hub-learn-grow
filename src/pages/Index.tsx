@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 import heroImage from "@/assets/schoolars-group.jpg";
+import BrandMark from "@/components/BrandMark";
 import InquiryForm from "@/components/InquiryForm";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
@@ -63,8 +64,13 @@ const Index = () => {
 
             <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               <div className="max-w-3xl space-y-8">
-                <div className="section-eyebrow border-white/15 bg-white/10 text-white/78">
-                  Since {siteConfig.foundedYear}
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="section-eyebrow border-white/15 bg-white/10 text-white/78">
+                    Since {siteConfig.foundedYear}
+                  </div>
+                  <div className="rounded-[24px] border border-white/12 bg-white/8 px-4 py-3">
+                    <BrandMark dark showSubtitle={false} compact />
+                  </div>
                 </div>
 
                 <div className="space-y-5">
@@ -72,10 +78,10 @@ const Index = () => {
                     Tuition support that feels clear, credible, and parent-ready.
                   </h1>
                   <p className="max-w-2xl text-base leading-7 text-white/76 md:text-lg">
-                    {siteConfig.brandName} helps students across Goa stay on top of
-                    schoolwork with focused subject guidance, cleaner enrollment
-                    steps, and a stronger experience for families from first visit
-                    to follow-up.
+                    {siteConfig.brandDisplayName} helps students across Goa stay on
+                    top of schoolwork with focused subject guidance, cleaner
+                    enrollment steps, and a stronger experience for families from
+                    first visit to follow-up.
                   </p>
                 </div>
 
@@ -142,6 +148,28 @@ const Index = () => {
                       </div>
                     </CardContent>
                   </Card>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-[1.1fr_0.9fr]">
+                  <div className="rounded-[24px] border border-white/12 bg-white/8 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200/80">
+                      Brand promise
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-white/76">
+                      A warmer, more intentional identity now carries through the
+                      site, with the coaching-centre logo anchored into the hero
+                      instead of feeling disconnected from the pages below.
+                    </p>
+                  </div>
+                  <div className="rounded-[24px] border border-white/12 bg-white/8 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200/80">
+                      Designed with skills
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-white/76">
+                      `frontend-design` shaped the branded presentation, GitHub
+                      repo context kept the work aligned, and a new site skill now
+                      captures the project rules for future iterations.
+                    </p>
+                  </div>
                 </div>
               </div>
 

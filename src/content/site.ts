@@ -40,6 +40,8 @@ export interface CampusLocation {
 
 export const siteConfig = {
   brandName: "Schoolars Hub",
+  brandDisplayName: "Scholar's Hub",
+  brandSubtitle: "Coaching Centre",
   shortTagline: "Learn with clarity. Grow with confidence.",
   description:
     "Structured tuition support for students in Goa with clear teaching, parent updates, and practical academic planning.",
