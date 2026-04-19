@@ -85,7 +85,7 @@ const Subjects = () => {
             subtitle="Each card shows the grade range, description, and expected learning outcomes."
           />
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {subjects.map((subject) => {
               const Icon = subject.icon;
 
@@ -95,7 +95,7 @@ const Subjects = () => {
                   key={subject.title}
                 >
                   <CardHeader className="space-y-4">
-                    <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                       <div
                         aria-hidden="true"
                         className={`inline-flex rounded-2xl bg-gradient-to-br ${subject.accent} p-3 text-slate-950 shadow-sm`}

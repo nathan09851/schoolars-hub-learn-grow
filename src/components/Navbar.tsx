@@ -1,5 +1,5 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import BrandMark from "@/components/BrandMark";
@@ -19,10 +19,28 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Shrink/glass intensify on scroll
   useEffect(() => {
@@ -32,7 +50,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header ref={navRef} className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
         <div
           className={`mesh-border flex items-center justify-between rounded-[24px] border border-white/60 bg-white/75 px-4 py-3 shadow-lg backdrop-blur-xl md:px-5 transition-all duration-300 ${
@@ -118,7 +136,7 @@ const Navbar = () => {
                 return (
                   <Link
                     aria-current={isActive ? "page" : undefined}
-                    className={`rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-150 ${
+                    className={`py-3 px-2 text-base rounded-md w-full block font-semibold transition-all duration-150 ${
                       isActive
                         ? "bg-slate-950 text-white"
                         : "text-slate-700 hover:bg-slate-950/6 hover:translate-x-1"

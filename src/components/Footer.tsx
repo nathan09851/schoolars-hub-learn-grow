@@ -9,8 +9,8 @@ const Footer = () => {
     <footer className="section-shell pb-10 pt-14">
       <div className="container px-4">
         <div className="ink-panel mesh-border overflow-hidden">
-          <div className="grid gap-10 p-8 md:grid-cols-[1.1fr_0.8fr_0.8fr_1fr] md:p-10">
-            <div className="space-y-5">
+          <div className="grid grid-cols-2 gap-10 p-8 md:grid-cols-[1.1fr_0.8fr_0.8fr_1fr] md:p-10">
+            <div className="col-span-2 md:col-span-1 space-y-5">
               <Link className="inline-flex items-center gap-3" to="/">
                 <BrandMark className="items-start" dark />
               </Link>
@@ -121,7 +121,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="border-t border-white/10 px-8 py-5 text-sm text-white/70 md:px-10">
+          <div className="border-t border-white/10 px-8 py-5 text-xs sm:text-sm text-white/70 md:px-10">
             <p>
               Copyright {new Date().getFullYear()} {siteConfig.brandName}. Built for
               stronger parent trust, clearer UX, and a more secure intake flow.

@@ -86,7 +86,7 @@ const Payments = () => {
             title="Choose your plan"
           />
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2">
             {feePlans.map((plan) => {
               const amount = plan.monthlyFee.replace("INR ", "").replace(",", "");
               const paymentUrl = `upi://pay?pa=${siteConfig.upiId}&pn=${encodeURIComponent(

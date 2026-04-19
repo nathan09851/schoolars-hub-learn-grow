@@ -35,7 +35,7 @@ const SubjectCard = ({
           <div className="flex items-start justify-between gap-3">
             <div
               aria-hidden="true"
-              className={`inline-flex rounded-xl bg-gradient-to-br ${accent} p-2.5 text-slate-950 shadow-sm`}
+              className={`w-12 h-12 sm:w-14 sm:h-14 inline-flex items-center justify-center rounded-xl bg-gradient-to-br ${accent} p-2.5 text-slate-950 shadow-sm`}
             >
               <Icon className="h-5 w-5" />
             </div>
@@ -46,10 +46,10 @@ const SubjectCard = ({
 
           {/* Title + description */}
           <div className="flex-1 space-y-2">
-            <h3 className="font-serif text-xl font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
+            <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
               {title}
             </h3>
-            <p className="text-sm leading-6 text-muted-foreground">
+            <p className="text-xs sm:text-sm leading-6 text-muted-foreground">
               {description}
             </p>
           </div>

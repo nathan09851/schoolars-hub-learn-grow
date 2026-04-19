@@ -28,7 +28,7 @@ const TestimonialCard = ({
               aria-hidden="true"
               className="inline-flex rounded-xl bg-amber-100 p-2.5 text-amber-700 transition-transform duration-200 hover:scale-110"
             >
-              <Quote className="h-4 w-4" />
+              <Quote className="h-7 w-7 sm:h-10 sm:w-10" />
             </div>
             <div
               className="flex gap-0.5"
@@ -51,7 +51,7 @@ const TestimonialCard = ({
           </div>
 
           {/* Quote */}
-          <p className="flex-1 text-sm leading-7 text-slate-700">
+          <p className="flex-1 text-sm sm:text-base leading-7 text-slate-700">
             "{content}"
           </p>
 

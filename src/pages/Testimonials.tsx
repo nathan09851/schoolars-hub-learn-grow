@@ -121,7 +121,7 @@ const Testimonials = () => {
             title="Parent and student reviews"
           />
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 delay={index * 80}

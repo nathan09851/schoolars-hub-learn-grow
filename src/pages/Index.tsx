@@ -89,7 +89,7 @@ const Index = () => {
 
                 {/* headline */}
                 <AnimatedSection variant="fade-up" delay={0} duration={700}>
-                  <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+                  <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight">
                     Tuition that's clear,
                     <br />
                     <span className="text-amber-300">trusted by families.</span>
@@ -121,9 +121,9 @@ const Index = () => {
                 </ul>
 
                 {/* CTAs */}
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
                   <Button
-                    className="btn-shine min-h-12 rounded-full px-7"
+                    className="btn-shine min-h-12 rounded-full px-7 w-full sm:w-auto"
                     size="xl"
                     variant="hero"
                     asChild
@@ -134,7 +134,7 @@ const Index = () => {
                     </Link>
                   </Button>
                   <Button
-                    className="min-h-12 rounded-full border-white/20 bg-white/8 px-7 text-white hover:bg-white/14 hover:text-white"
+                    className="min-h-12 rounded-full border-white/20 bg-white/8 px-7 text-white hover:bg-white/14 hover:text-white w-full sm:w-auto"
                     size="xl"
                     variant="outline"
                     asChild
@@ -211,9 +211,9 @@ const Index = () => {
       </section>
 
       {/* ── Proof Stats ── */}
-      <section className="section-shell pt-8" aria-label="Key statistics">
-        <div className="container px-4">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <section className="py-12 sm:py-16 md:py-20 section-shell pt-8" aria-label="Key statistics">
+        <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 md:grid-cols-4">
             {proofStats.map((stat, index) => (
               <StatsCard
                 delay={index * 100}
@@ -281,7 +281,7 @@ const Index = () => {
             title="Subjects taught with clarity"
           />
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
             {subjects.map((subject, index) => (
               <SubjectCard
                 accent={subject.accent}
@@ -424,7 +424,7 @@ const Index = () => {
             title="What families say"
           />
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
                 delay={index * 80}

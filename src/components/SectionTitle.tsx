@@ -39,13 +39,13 @@ const SectionTitle = ({
       <div className="space-y-3">
         <h2
           id={id}
-          className="font-serif text-3xl font-semibold tracking-tight text-foreground md:text-4xl"
+          className="font-serif text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-foreground"
         >
           {title}
         </h2>
         {subtitle ? (
           <p
-            className={`text-base leading-7 text-muted-foreground md:text-[17px] ${
+            className={`text-sm sm:text-base leading-7 text-muted-foreground md:text-[17px] ${
               centered ? "mx-auto max-w-2xl" : "max-w-xl"
             }`}
           >

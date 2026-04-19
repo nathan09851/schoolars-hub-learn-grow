@@ -122,6 +122,16 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  input, textarea, select {
+    font-size: 16px; /* prevents iOS auto-zoom on focus */
+  }
+
+  button, a, [role="button"] {
+    min-height: 44px; /* Apple HIG minimum tap target */
+    min-width: 44px;
   }
 
   body {

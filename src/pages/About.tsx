@@ -129,7 +129,7 @@ const About = () => {
             subtitle="Three principles that guide everything at Schoolars Hub."
           />
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {trustSignals.map((signal) => {
               const Icon = signal.icon;
               return (
@@ -167,7 +167,7 @@ const About = () => {
             title="Meet the faculty"
           />
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
               <Card
                 className="mesh-border rounded-[24px] border-white/50 bg-white/88 shadow-md"
