@@ -23,6 +23,7 @@ const team = [
     role: "Founder & Director",
     description:
       "Leads the centre with a parent-first approach and deep operational understanding of academic support.",
+    image: "/team/shamina.jpg",
   },
   {
     name: "Avita",
@@ -36,6 +37,7 @@ const team = [
     role: "Academic Faculty",
     description:
       "Supports students with concept reinforcement and a calm, structured classroom rhythm.",
+    image: "/team/marina.jpg",
   },
   {
     name: "Senha",
