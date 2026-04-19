@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npx plugins:*)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Read(//e/TUITION PICNIC/**)",
+      "Bash(dir \"E:\\\\TUITION PICNIC\")"
     ]
   }
 }
