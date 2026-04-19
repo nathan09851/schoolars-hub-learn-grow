@@ -1,9 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
-// In CI, vite preview runs on 4173 by default
-const DEV_PORT = 5173;
-const PREVIEW_PORT = 4173;
-const PORT = process.env.CI ? PREVIEW_PORT : DEV_PORT;
+// Dev server runs on 8080 (from vite.config.ts), preview on 4173
+const CI_PORT = 4173;
+const DEV_PORT = 8080;
+const PORT = process.env.CI ? CI_PORT : DEV_PORT;
 const BASE_URL = `http://localhost:${PORT}`;
 
 export default defineConfig({
@@ -29,14 +29,16 @@ export default defineConfig({
 
   webServer: {
     command: process.env.CI
-      ? "npm run build && npx vite preview --port 4173 --strictPort"
+      ? "npx vite build && npx vite preview --port 4173 --strictPort"
       : "npm run dev",
     port: PORT,
     reuseExistingServer: !process.env.CI,
     timeout: 240000,
     env: {
-      VITE_SUPABASE_URL: process.env.VITE_SUPABASE_URL ?? "https://placeholder.supabase.co",
-      VITE_SUPABASE_PUBLISHABLE_KEY: process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? "placeholder-key",
+      VITE_SUPABASE_URL:
+        process.env.VITE_SUPABASE_URL ?? "https://placeholder.supabase.co",
+      VITE_SUPABASE_PUBLISHABLE_KEY:
+        process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? "placeholder-key",
     },
   },
 });
