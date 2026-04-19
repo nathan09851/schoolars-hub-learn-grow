@@ -13,11 +13,10 @@
 
 name: Run Datadog Synthetic tests
 
+# Disabled until DD_API_KEY and DD_APP_KEY secrets are configured.
+# Run manually from Actions tab when needed.
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
