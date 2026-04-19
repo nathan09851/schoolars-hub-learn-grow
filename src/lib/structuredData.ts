@@ -1,7 +1,7 @@
 import { campusLocations, siteConfig, subjects } from "@/content/site";
 
 const siteUrl =
-  import.meta.env.VITE_SITE_URL || "https://schoolarshub.lovable.app";
+  import.meta.env.VITE_SITE_URL || "https://scholarshub-alpha.vercel.app";
 
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -76,3 +76,4 @@ export const breadcrumbJsonLd = (
     item: `${siteUrl}${item.url}`,
   })),
 });
+

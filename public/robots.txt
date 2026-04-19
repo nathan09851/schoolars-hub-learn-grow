@@ -3,4 +3,5 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://schoolarshub.lovable.app/sitemap.xml
+Sitemap: https://scholarshub-alpha.vercel.app/sitemap.xml
+

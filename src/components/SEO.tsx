@@ -13,7 +13,7 @@ const SITE_URL =
   import.meta.env.VITE_SITE_URL ||
   (typeof window !== "undefined"
     ? window.location.origin
-    : "https://schoolarshub.lovable.app");
+    : "https://scholarshub-alpha.vercel.app");
 
 const SITE_NAME = "Schoolars Hub";
 
@@ -75,3 +75,4 @@ const SEO = ({ title, description, canonical, image, jsonLd, noindex = false }: 
 };
 
 export default SEO;
+
