@@ -18,13 +18,27 @@ const galleryImages = [
   { id: 4, src: "/gallery/media__1776555466477.jpg", alt: "Student with a backpack", category: "Campus" },
   { id: 5, src: "/gallery/media__1776553221134.jpg", alt: "Students enjoying outdoor time", category: "Campus" },
   { id: 6, src: "/gallery/media__1776553221130.jpg", alt: "Students collaborating on a project", category: "Campus" },
-  // New images from the recent trip
-  { id: 7, src: "/gallery/picnic-group.jpg", alt: "Group photo of students and teachers during outdoor trip", category: "Trips & Events" },
-  { id: 8, src: "/gallery/pool-fun.jpg", alt: "Student having fun in the pool during the outing", category: "Trips & Events" },
-  { id: 9, src: "/gallery/student-portrait.jpg", alt: "Cheerful student enjoying the school event", category: "Trips & Events" },
-  { id: 10, src: "/gallery/water-slide-action.jpg", alt: "Students sliding down a water slide with excitement", category: "Trips & Events" },
-  { id: 11, src: "/gallery/water-slide-top.jpg", alt: "Students preparing to go down the water slide", category: "Trips & Events" },
+  // Trip & Event Images (Updated with actual filenames)
+  { id: 7, src: "/gallery/IMG_1691.JPG", alt: "Student splashing in the pool during the school trip", category: "Trips & Events" },
+  { id: 8, src: "/gallery/IMG_1731.JPG", alt: "Cheerful student enjoying the pool outing", category: "Trips & Events" },
+  { id: 9, src: "/gallery/IMG_2054.JPG", alt: "Students having fun in the water", category: "Trips & Events" },
+  { id: 10, src: "/gallery/IMG_1726.JPG", alt: "Exciting moment during the school picnic", category: "Trips & Events" },
+  { id: 11, src: "/gallery/IMG_1752.JPG", alt: "Students participating in outdoor activities", category: "Trips & Events" },
+  { id: 12, src: "/gallery/IMG_1757.JPG", alt: "Fun times at the water park", category: "Trips & Events" },
+  { id: 13, src: "/gallery/IMG_1765.JPG", alt: "Student groups enjoying the sunny day", category: "Trips & Events" },
+  { id: 14, src: "/gallery/IMG_1771.JPG", alt: "Laughter and joy during the field trip", category: "Trips & Events" },
+  { id: 15, src: "/gallery/IMG_1782.JPG", alt: "Memories from the annual school outing", category: "Trips & Events" },
+  { id: 16, src: "/gallery/IMG_1819.JPG", alt: "Students bonding outside the classroom", category: "Trips & Events" },
+  { id: 17, src: "/gallery/IMG_1862.JPG", alt: "Water slide fun with students", category: "Trips & Events" },
+  { id: 18, src: "/gallery/IMG_1864.JPG", alt: "Exciting slide action at the park", category: "Trips & Events" },
+  { id: 19, src: "/gallery/IMG_1869.JPG", alt: "Group of students at the top of the slide", category: "Trips & Events" },
+  { id: 20, src: "/gallery/IMG_1871.JPG", alt: "Getting ready for a splash", category: "Trips & Events" },
+  { id: 21, src: "/gallery/IMG_1954.JPG", alt: "Student smiling for a photo at the event", category: "Trips & Events" },
+  { id: 22, src: "/gallery/IMG_2037.JPG", alt: "Candid moment of student life", category: "Trips & Events" },
+  { id: 23, src: "/gallery/IMG_2038.JPG", alt: "Friends enjoying the school trip together", category: "Trips & Events" },
+  { id: 24, src: "/gallery/WhatsApp Image 2026-04-08 at 3.31.34 PM.jpeg", alt: "Group photo of students and teachers", category: "Trips & Events" },
 ];
+
 
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState("All");
