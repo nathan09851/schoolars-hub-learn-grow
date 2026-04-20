@@ -53,8 +53,8 @@ const Navbar = () => {
     <header ref={navRef} className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
         <div
-          className={`mesh-border flex items-center justify-between rounded-[24px] border border-white/60 bg-white/75 px-3.5 py-2.5 shadow-lg backdrop-blur-xl md:px-5 md:py-3 transition-all duration-300 ${
-            scrolled ? "shadow-xl bg-white/88 py-2" : ""
+          className={`mesh-border flex items-center justify-between rounded-[24px] border border-white/60 bg-white/75 px-3 py-2 shadow-lg backdrop-blur-xl md:px-5 md:py-3 transition-all duration-300 ${
+            scrolled ? "shadow-xl bg-white/88 py-1.5" : ""
           }`}
         >
           <Link
@@ -142,7 +142,11 @@ const Navbar = () => {
                         : "text-slate-700 hover:bg-slate-950/6 hover:translate-x-1"
                     }`}
                     key={link.path}
-                    style={{ transitionDelay: isOpen ? `${index * 40}ms` : "0ms" }}
+                    style={{ 
+                      transitionDelay: isOpen ? `${index * 50 + 100}ms` : "0ms",
+                      transform: isOpen ? 'translateX(0)' : 'translateX(-10px)',
+                      opacity: isOpen ? 1 : 0 
+                    }}
                     to={link.path}
                   >
                     {link.name}

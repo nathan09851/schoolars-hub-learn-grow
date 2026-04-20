@@ -104,70 +104,78 @@ const Index = () => {
               {/* Top area — headline + CTAs */}
               <div className="max-w-3xl space-y-7">
                 {/* eyebrow */}
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="section-eyebrow border-white/15 bg-white/10 text-white/80">
-                    Since {siteConfig.foundedYear} · Goa
+                <AnimatedSection variant="fade-up" delay={0}>
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="section-eyebrow border-white/15 bg-white/10 text-white/80">
+                      Since {siteConfig.foundedYear} · Goa
+                    </div>
+                    <div className="hidden rounded-[22px] border border-white/12 bg-white/8 px-4 py-2.5 sm:block">
+                      <BrandMark dark showSubtitle={false} compact />
+                    </div>
                   </div>
-                  <div className="hidden rounded-[22px] border border-white/12 bg-white/8 px-4 py-2.5 sm:block">
-                    <BrandMark dark showSubtitle={false} compact />
-                  </div>
-                </div>
+                </AnimatedSection>
 
                 {/* headline */}
-                <AnimatedSection variant="fade-up" delay={0} duration={700}>
-                  <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight">
+                <AnimatedSection variant="fade-up" delay={200} duration={800}>
+                  <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
                     Tuition that's clear,
                     <br />
                     <span className="text-amber-300">trusted by families.</span>
                   </h1>
                 </AnimatedSection>
 
-                <p className="max-w-xl text-base leading-7 text-white/78 md:text-lg">
-                  {siteConfig.brandDisplayName} helps students across Goa stay
-                  on top of schoolwork with focused subject guidance and
-                  transparent enrollment — so parents always know what to expect.
-                </p>
+                <AnimatedSection variant="fade-up" delay={400}>
+                  <p className="max-w-xl text-base leading-7 text-white/78 md:text-lg">
+                    {siteConfig.brandDisplayName} helps students across Goa stay
+                    on top of schoolwork with focused subject guidance and
+                    transparent enrollment — so parents always know what to expect.
+                  </p>
+                </AnimatedSection>
 
                 {/* highlights */}
-                <ul className="grid gap-2.5 sm:grid-cols-2" role="list">
-                  {heroHighlights.map((highlight) => (
-                    <li
-                      className="flex items-start gap-2.5 rounded-2xl border border-white/12 bg-white/8 px-4 py-3"
-                      key={highlight}
-                    >
-                      <BadgeCheck
-                        aria-hidden="true"
-                        className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-300"
-                      />
-                      <span className="text-sm leading-6 text-white/82">
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <AnimatedSection variant="fade-up" delay={600}>
+                  <ul className="grid gap-2.5 sm:grid-cols-2" role="list">
+                    {heroHighlights.map((highlight) => (
+                      <li
+                        className="flex items-start gap-2.5 rounded-2xl border border-white/12 bg-white/8 px-4 py-3"
+                        key={highlight}
+                      >
+                        <BadgeCheck
+                          aria-hidden="true"
+                          className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-300"
+                        />
+                        <span className="text-sm leading-6 text-white/82">
+                          {highlight}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </AnimatedSection>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
-                  <Button
-                    className="btn-shine min-h-12 rounded-full px-7 w-full sm:w-auto"
-                    size="xl"
-                    variant="hero"
-                    asChild
-                  >
-                    <Link to="/payments">
-                      View fees and enroll
-                      <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button
-                    className="min-h-12 rounded-full border-white/20 bg-white/8 px-7 text-white hover:bg-white/14 hover:text-white w-full sm:w-auto"
-                    size="xl"
-                    variant="outline"
-                    asChild
-                  >
-                    <Link to="/subjects">Explore subjects</Link>
-                  </Button>
-                </div>
+                <AnimatedSection variant="fade-up" delay={800}>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 w-full sm:w-auto">
+                    <Button
+                      className="btn-shine min-h-12 rounded-full px-7 w-full sm:w-auto"
+                      size="xl"
+                      variant="hero"
+                      asChild
+                    >
+                      <Link to="/payments">
+                        View fees and enroll
+                        <ArrowRight aria-hidden="true" className="ml-1 h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button
+                      className="min-h-12 rounded-full border-white/20 bg-white/8 px-7 text-white hover:bg-white/14 hover:text-white w-full sm:w-auto"
+                      size="xl"
+                      variant="outline"
+                      asChild
+                    >
+                      <Link to="/subjects">Explore subjects</Link>
+                    </Button>
+                  </div>
+                </AnimatedSection>
 
                 {/* quick trust badges */}
                 <div className="grid grid-cols-3 gap-3">

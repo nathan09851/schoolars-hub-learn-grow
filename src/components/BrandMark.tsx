@@ -20,8 +20,8 @@ const BrandMark = ({
   return (
     <div className={["flex items-center gap-3", className].filter(Boolean).join(" ")}>
       <div
-        className={`flex items-center justify-center overflow-hidden rounded-2xl bg-white/85 shadow-sm ring-1 ring-slate-900/8 ${
-          compact ? "h-11 w-11 p-1" : "h-14 w-14 p-1.5"
+        className={`flex items-center justify-center overflow-hidden rounded-[14px] bg-white/95 shadow-sm ring-1 ring-slate-900/5 ${
+          compact ? "h-9 w-9 p-1 md:h-11 md:w-11 md:p-1.5" : "h-14 w-14 p-1.5"
         }`}
       >
         <img
@@ -29,25 +29,25 @@ const BrandMark = ({
           className="h-full w-full object-contain"
           loading="eager"
           decoding="async"
-          width={compact ? 44 : 56}
-          height={compact ? 44 : 56}
+          width={compact ? 36 : 56}
+          height={compact ? 36 : 56}
           src={logo}
         />
       </div>
 
-      <div className="flex flex-col justify-center min-w-0 leading-tight">
+      <div className="flex flex-col justify-center min-w-0 leading-[1.1]">
         <p
-          className={`truncate font-serif font-semibold tracking-tight ${
-            compact ? "text-lg md:text-xl" : "text-2xl"
+          className={`truncate font-serif font-bold tracking-tight ${
+            compact ? "text-base md:text-xl" : "text-2xl"
           } ${titleClass}`}
         >
           {siteConfig.brandDisplayName}
         </p>
         {showSubtitle ? (
           <p
-            className={`truncate uppercase font-medium tracking-[0.24em] ${
-              compact ? "text-[9px] md:text-[10px]" : "text-[11px]"
-            } ${subtitleClass} mt-0.5`}
+            className={`truncate uppercase font-bold tracking-[0.2em] ${
+              compact ? "text-[8px] md:text-[10px]" : "text-[11px]"
+            } ${subtitleClass} opacity-80`}
           >
             {siteConfig.brandSubtitle}
           </p>
