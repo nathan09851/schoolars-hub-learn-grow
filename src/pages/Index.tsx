@@ -8,7 +8,14 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import heroImage from "@/assets/schoolars-group.jpg";
+// Hero image is served from public/assets-static/ as a stable URL.
+// This allows <link rel="preload"> in <head> to match the actual src the
+// browser uses — without a hash mismatch, the preload would be wasted.
+const HERO_AVIF_MOBILE = "/assets-static/schoolars-group-800.avif";
+const HERO_WEBP_MOBILE = "/assets-static/schoolars-group-800.webp";
+const HERO_AVIF = "/assets-static/schoolars-group.avif";
+const HERO_WEBP = "/assets-static/schoolars-group.webp";
+const HERO_JPG = "/assets-static/schoolars-group.jpg";
 import BrandMark from "@/components/BrandMark";
 import InquiryForm from "@/components/InquiryForm";
 import Layout from "@/components/Layout";
@@ -56,16 +63,34 @@ const Index = () => {
       >
         <div className="container px-4">
           <div className="hero-glow relative overflow-hidden rounded-[36px] border border-white/12 shadow-2xl">
-            {/* Full-bleed hero image — clearly visible */}
+            {/* Full-bleed hero image — AVIF primary (mobile 800w / desktop 1920w), WebP fallback */}
             <div className="absolute inset-0">
-              <img
-                alt="Schoolars Hub students and teachers at the coaching centre in Goa"
-                className="h-full w-full object-cover object-center"
-                height={1080}
-                loading="eager"
-                src={heroImage}
-                width={1920}
-              />
+              <picture>
+                {/* Mobile ≤1 768px: 800px AVIF ≈60 KB vs 457 KB original — saves ~2.0 s on Slow 4G */}
+                <source
+                  media="(max-width: 768px)"
+                  srcSet={HERO_AVIF_MOBILE}
+                  type="image/avif"
+                />
+                <source
+                  media="(max-width: 768px)"
+                  srcSet={HERO_WEBP_MOBILE}
+                  type="image/webp"
+                />
+                {/* Desktop: full-resolution AVIF */}
+                <source srcSet={HERO_AVIF} type="image/avif" />
+                <source srcSet={HERO_WEBP} type="image/webp" />
+                <img
+                  alt="Schoolars Hub students and teachers at the coaching centre in Goa"
+                  className="h-full w-full object-cover object-center"
+                  height={1080}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="sync"
+                  src={HERO_JPG}
+                  width={1920}
+                />
+              </picture>
               {/* dark overlay so text stays readable */}
               <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30" />
               {/* Ambient floating orbs */}
@@ -381,14 +406,19 @@ const Index = () => {
 
                   {/* Photo panel */}
                   <div className="relative min-h-[260px] bg-slate-950">
-                    <img
-                      alt="Schoolars Hub students and teachers at the Goa campus"
-                      className="h-full w-full object-cover object-center opacity-85"
-                      height={900}
-                      loading="lazy"
-                      src={heroImage}
-                      width={900}
-                    />
+                    <picture>
+                      <source srcSet={HERO_AVIF} type="image/avif" />
+                      <source srcSet={HERO_WEBP} type="image/webp" />
+                      <img
+                        alt="Schoolars Hub students and teachers at the Goa campus"
+                        className="h-full w-full object-cover object-center opacity-85"
+                        height={900}
+                        loading="lazy"
+                        decoding="async"
+                        src={HERO_JPG}
+                        width={900}
+                      />
+                    </picture>
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                       <p className="text-sm font-medium">

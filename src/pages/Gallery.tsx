@@ -5,47 +5,45 @@ import SectionTitle from "@/components/SectionTitle";
 import { localBusinessJsonLd } from "@/lib/structuredData";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 
 // Image categories for filtering
 const categories = ["All", "Campus", "Trips & Events"];
 
-// Gallery images implementation
+// Gallery images — all using WebP (97–98% smaller than raw JPEGs)
+// Fallback src points to original for browsers without WebP support (Edge Legacy only)
 const galleryImages = [
-  { id: 1, src: "/gallery-images/media__1776553220783.jpg", alt: "Students engaged in a class discussion", category: "Campus" },
-  { id: 2, src: "/gallery-images/media__1776553220792.jpg", alt: "Student eating a snack during break", category: "Campus" },
-  { id: 3, src: "/gallery-images/media__1776553221092.jpg", alt: "Students talking near the campus garden", category: "Campus" },
-  { id: 4, src: "/gallery-images/media__1776555466477.jpg", alt: "Student with a backpack", category: "Campus" },
-  { id: 5, src: "/gallery-images/media__1776553221134.jpg", alt: "Students enjoying outdoor time", category: "Campus" },
-  { id: 6, src: "/gallery-images/media__1776553221130.jpg", alt: "Students collaborating on a project", category: "Campus" },
-  // Trip & Event Images (Updated with actual filenames)
-  { id: 7, src: "/gallery-images/IMG_1691.JPG", alt: "Student splashing in the pool during the school trip", category: "Trips & Events" },
-  { id: 8, src: "/gallery-images/IMG_1731.JPG", alt: "Cheerful student enjoying the pool outing", category: "Trips & Events" },
-  { id: 9, src: "/gallery-images/IMG_2054.JPG", alt: "Students having fun in the water", category: "Trips & Events" },
-  { id: 10, src: "/gallery-images/IMG_1726.JPG", alt: "Exciting moment during the school picnic", category: "Trips & Events" },
-  { id: 11, src: "/gallery-images/IMG_1752.JPG", alt: "Students participating in outdoor activities", category: "Trips & Events" },
-  { id: 12, src: "/gallery-images/IMG_1757.JPG", alt: "Fun times at the water park", category: "Trips & Events" },
-  { id: 13, src: "/gallery-images/IMG_1765.JPG", alt: "Student groups enjoying the sunny day", category: "Trips & Events" },
-  { id: 14, src: "/gallery-images/IMG_1771.JPG", alt: "Laughter and joy during the field trip", category: "Trips & Events" },
-  { id: 15, src: "/gallery-images/IMG_1782.JPG", alt: "Memories from the annual school outing", category: "Trips & Events" },
-  { id: 16, src: "/gallery-images/IMG_1819.JPG", alt: "Students bonding outside the classroom", category: "Trips & Events" },
-  { id: 17, src: "/gallery-images/IMG_1862.JPG", alt: "Water slide fun with students", category: "Trips & Events" },
-  { id: 18, src: "/gallery-images/IMG_1864.JPG", alt: "Exciting slide action at the park", category: "Trips & Events" },
-  { id: 19, src: "/gallery-images/IMG_1869.JPG", alt: "Group of students at the top of the slide", category: "Trips & Events" },
-  { id: 20, src: "/gallery-images/IMG_1871.JPG", alt: "Getting ready for a splash", category: "Trips & Events" },
-  { id: 21, src: "/gallery-images/IMG_1954.JPG", alt: "Student smiling for a photo at the event", category: "Trips & Events" },
-  { id: 22, src: "/gallery-images/IMG_2037.JPG", alt: "Candid moment of student life", category: "Trips & Events" },
-  { id: 23, src: "/gallery-images/IMG_2038.JPG", alt: "Friends enjoying the school trip together", category: "Trips & Events" },
-  { id: 24, src: "/gallery-images/WhatsApp Image 2026-04-08 at 3.31.34 PM.jpeg", alt: "Group photo of students and teachers", category: "Trips & Events" },
+  { id: 1, src: "/gallery-webp/media__1776553220783.webp", fallback: "/gallery-images/media__1776553220783.jpg", alt: "Students engaged in a class discussion", category: "Campus" },
+  { id: 2, src: "/gallery-webp/media__1776553220792.webp", fallback: "/gallery-images/media__1776553220792.jpg", alt: "Student eating a snack during break", category: "Campus" },
+  { id: 3, src: "/gallery-webp/media__1776553221092.webp", fallback: "/gallery-images/media__1776553221092.jpg", alt: "Students talking near the campus garden", category: "Campus" },
+  { id: 4, src: "/gallery-webp/media__1776555466477.webp", fallback: "/gallery-images/media__1776555466477.jpg", alt: "Student with a backpack", category: "Campus" },
+  { id: 5, src: "/gallery-webp/media__1776553221134.webp", fallback: "/gallery-images/media__1776553221134.jpg", alt: "Students enjoying outdoor time", category: "Campus" },
+  { id: 6, src: "/gallery-webp/media__1776553221130.webp", fallback: "/gallery-images/media__1776553221130.jpg", alt: "Students collaborating on a project", category: "Campus" },
+  // Trip & Event Images
+  { id: 7,  src: "/gallery-webp/IMG_1691.webp",  fallback: "/gallery-images/IMG_1691.JPG",  alt: "Student splashing in the pool during the school trip", category: "Trips & Events" },
+  { id: 8,  src: "/gallery-webp/IMG_1731.webp",  fallback: "/gallery-images/IMG_1731.JPG",  alt: "Cheerful student enjoying the pool outing", category: "Trips & Events" },
+  { id: 9,  src: "/gallery-webp/IMG_2054.webp",  fallback: "/gallery-images/IMG_2054.JPG",  alt: "Students having fun in the water", category: "Trips & Events" },
+  { id: 10, src: "/gallery-webp/IMG_1726.webp",  fallback: "/gallery-images/IMG_1726.JPG",  alt: "Exciting moment during the school picnic", category: "Trips & Events" },
+  { id: 11, src: "/gallery-webp/IMG_1752.webp",  fallback: "/gallery-images/IMG_1752.JPG",  alt: "Students participating in outdoor activities", category: "Trips & Events" },
+  { id: 12, src: "/gallery-webp/IMG_1757.webp",  fallback: "/gallery-images/IMG_1757.JPG",  alt: "Fun times at the water park", category: "Trips & Events" },
+  { id: 13, src: "/gallery-webp/IMG_1765.webp",  fallback: "/gallery-images/IMG_1765.JPG",  alt: "Student groups enjoying the sunny day", category: "Trips & Events" },
+  { id: 14, src: "/gallery-webp/IMG_1771.webp",  fallback: "/gallery-images/IMG_1771.JPG",  alt: "Laughter and joy during the field trip", category: "Trips & Events" },
+  { id: 15, src: "/gallery-webp/IMG_1782.webp",  fallback: "/gallery-images/IMG_1782.JPG",  alt: "Memories from the annual school outing", category: "Trips & Events" },
+  { id: 16, src: "/gallery-webp/IMG_1819.webp",  fallback: "/gallery-images/IMG_1819.JPG",  alt: "Students bonding outside the classroom", category: "Trips & Events" },
+  { id: 17, src: "/gallery-webp/IMG_1862.webp",  fallback: "/gallery-images/IMG_1862.JPG",  alt: "Water slide fun with students", category: "Trips & Events" },
+  { id: 18, src: "/gallery-webp/IMG_1864.webp",  fallback: "/gallery-images/IMG_1864.JPG",  alt: "Exciting slide action at the park", category: "Trips & Events" },
+  { id: 19, src: "/gallery-webp/IMG_1869.webp",  fallback: "/gallery-images/IMG_1869.JPG",  alt: "Group of students at the top of the slide", category: "Trips & Events" },
+  { id: 20, src: "/gallery-webp/IMG_1871.webp",  fallback: "/gallery-images/IMG_1871.JPG",  alt: "Getting ready for a splash", category: "Trips & Events" },
+  { id: 21, src: "/gallery-webp/IMG_1954.webp",  fallback: "/gallery-images/IMG_1954.JPG",  alt: "Student smiling for a photo at the event", category: "Trips & Events" },
+  { id: 22, src: "/gallery-webp/IMG_2037.webp",  fallback: "/gallery-images/IMG_2037.JPG",  alt: "Candid moment of student life", category: "Trips & Events" },
+  { id: 23, src: "/gallery-webp/IMG_2038.webp",  fallback: "/gallery-images/IMG_2038.JPG",  alt: "Friends enjoying the school trip together", category: "Trips & Events" },
+  { id: 24, src: "/gallery-webp/WhatsApp_Image_2026-04-08_at_3.31.34_PM.webp", fallback: "/gallery-images/WhatsApp Image 2026-04-08 at 3.31.34 PM.jpeg", alt: "Group photo of students and teachers", category: "Trips & Events" },
 ];
-
 
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
 
-  const filteredImages = activeCategory === "All" 
-    ? galleryImages 
+  const filteredImages = activeCategory === "All"
+    ? galleryImages
     : galleryImages.filter(img => img.category === activeCategory);
 
   return (
@@ -89,7 +87,7 @@ const Gallery = () => {
                 <div key={`${image.id}-${activeCategory}`}>
                   <AnimatedSection
                     variant="fade-up"
-                    delay={index * 50}
+                    delay={Math.min(index * 50, 400)} // cap stagger at 400ms
                     className="break-inside-avoid relative overflow-hidden rounded-2xl group cursor-pointer"
                   >
                     <Dialog>
@@ -100,21 +98,33 @@ const Gallery = () => {
                               View Photo
                             </span>
                           </div>
-                          <img
-                            alt={image.alt}
-                            className="w-full h-auto object-cover rounded-2xl transition-transform duration-500 ease-out group-hover:scale-105 bg-slate-100"
-                            loading="lazy"
-                            src={image.src}
-                          />
+                          {/* <picture> provides WebP with JPEG fallback for legacy browsers */}
+                          <picture>
+                            <source srcSet={image.src} type="image/webp" />
+                            <img
+                              alt={image.alt}
+                              className="w-full h-auto object-cover rounded-2xl transition-transform duration-500 ease-out group-hover:scale-105 bg-slate-100"
+                              loading="lazy"
+                              decoding="async"
+                              src={image.fallback}
+                              width={700}
+                              height={525}
+                            />
+                          </picture>
                         </div>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl p-0 overflow-hidden bg-transparent border-none">
                         <div className="relative group">
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
-                          />
+                          <picture>
+                            <source srcSet={image.src} type="image/webp" />
+                            <img
+                              src={image.fallback}
+                              alt={image.alt}
+                              className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </picture>
                           <div className="bg-white/90 backdrop-blur-md p-4 mt-2 rounded-lg">
                             <p className="text-slate-800 font-medium text-center">{image.alt}</p>
                             <p className="text-slate-500 text-xs text-center mt-1 uppercase tracking-wider">{image.category}</p>
@@ -126,7 +136,7 @@ const Gallery = () => {
                 </div>
               ))}
             </div>
-            
+
             {filteredImages.length === 0 && (
               <div className="text-center py-20">
                 <p className="text-slate-400">No images found in this category.</p>
@@ -140,4 +150,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-

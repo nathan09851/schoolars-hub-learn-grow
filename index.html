@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.supabase.co https://*.elevenlabs.io wss://*.elevenlabs.io; script-src 'self' 'unsafe-inline' https://elevenlabs.io https://unpkg.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+      content="default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://*.elevenlabs.io wss://*.elevenlabs.io https://api.us.elevenlabs.io; script-src 'self' 'unsafe-inline' https://elevenlabs.io https://unpkg.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
     />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), geolocation=(), microphone=*" />
@@ -15,7 +15,7 @@
     <title>Schoolars Hub — Quality Tuition Coaching in Goa | Classes 1–12</title>
     <meta
       name="description"
-      content="Schoolars Hub offers quality tuition coaching in Goa for Classes 1–12. Expert teachers in Science, Maths, English, Hindi, Konkani, Geography & History. Two campuses — Thivim & Corlim. 5.0★ Google rating."
+      content="Schoolars Hub offers quality tuition coaching in Goa for Classes 1–12. Expert teachers in Science, Maths, English, Hindi, Konkani, Geography &amp; History. Two campuses — Thivim &amp; Corlim. 5.0★ Google rating."
     />
     <meta
       name="keywords"
@@ -31,18 +31,56 @@
     <meta name="geo.position" content="15.4;73.9" />
     <meta name="ICBM" content="15.4, 73.9" />
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      ══════════════════════════════════════════════
+      PERFORMANCE: Self-hosted font preloads
+      Eliminates 2 Google Fonts round-trips (DNS + TLS + download)
+      that previously blocked FCP for ~1,158 ms on mobile Slow 4G.
+      ══════════════════════════════════════════════
+    -->
+    <link rel="preload" href="/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lora.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!--
+      ══════════════════════════════════════════════
+      PERFORMANCE: LCP hero image preload — AVIF preferred, WebP fallback
+      Without this, the browser can't discover the hero image until JS runs
+      (~2,508 ms after navigation on mobile). The preload cuts discovery to ~0 ms.
+      Mobile gets a 800px image; desktop gets the full 1920px version.
+      fetchpriority="high" tells the browser this is the most important resource.
+      ══════════════════════════════════════════════
+    -->
+    <link
+      rel="preload"
+      as="image"
+      href="/assets-static/schoolars-group.avif"
+      imagesrcset="
+        /assets-static/schoolars-group-800.avif 800w,
+        /assets-static/schoolars-group.avif 1920w
+      "
+      imagesizes="(max-width: 768px) 100vw, 1920px"
+      fetchpriority="high"
+      type="image/avif"
+    />
+
+    <!--
+      DNS prefetch for third-party origins — resolves DNS in background
+      so ElevenLabs widget (when eventually loaded) connects faster.
+    -->
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://api.us.elevenlabs.io" />
+    <link rel="dns-prefetch" href="https://supabase.co" />
+
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Favicon -->
+    <!-- Favicon — 48px for browser tab (tiny footprint vs 261 KB original) -->
+    <link rel="icon" type="image/png" href="/favicon-48.png" sizes="48x48" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon-192.png" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Schoolars Hub — Quality Tuition Coaching in Goa" />
-    <meta property="og:description" content="Expert tuition for Classes 1–12 in Science, Maths, English & more. Two Goa campuses, transparent fees, 5.0★ Google rating." />
+    <meta property="og:description" content="Expert tuition for Classes 1–12 in Science, Maths, English &amp; more. Two Goa campuses, transparent fees, 5.0★ Google rating." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Schoolars Hub" />
     <meta property="og:locale" content="en_IN" />
@@ -50,7 +88,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Schoolars Hub — Quality Tuition Coaching in Goa" />
-    <meta name="twitter:description" content="Expert tuition for Classes 1–12 across 7 subjects. Transparent fees, real reviews. Thivim & Corlim campuses." />
+    <meta name="twitter:description" content="Expert tuition for Classes 1–12 across 7 subjects. Transparent fees, real reviews. Thivim &amp; Corlim campuses." />
   </head>
 
   <body>
@@ -58,7 +96,7 @@
     <noscript>
       <div style="padding: 2rem; text-align: center; font-family: sans-serif;">
         <h1>Schoolars Hub — Tuition Coaching in Goa</h1>
-        <p>Quality tuition for Classes 1–12 in Science, Maths, English, Hindi, Konkani, Geography & History.</p>
+        <p>Quality tuition for Classes 1–12 in Science, Maths, English, Hindi, Konkani, Geography &amp; History.</p>
         <p>Please enable JavaScript to use this website, or call us at +91 98XXXXXXXX.</p>
       </div>
     </noscript>

@@ -1,13 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { Loader2, MessageSquare, PhoneCall, ShieldCheck } from "lucide-react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -53,6 +53,11 @@ const InquiryForm = ({
   description = "Tell us what you need and we will guide you to the right class, subject, and next step.",
   className,
 }: InquiryFormProps) => {
+  // useId generates a unique, stable ID per component instance — fixes the
+  // duplicate id="fullName" accessibility violation when the form is mounted twice.
+  const uid = useId();
+  const fid = (name: string) => `${uid}-${name}`;
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const form = useForm<InquiryFormValues>({
     resolver: zodResolver(inquirySchema),
@@ -102,7 +107,8 @@ const InquiryForm = ({
           <ShieldCheck className="h-3.5 w-3.5" />
           Secure inquiry flow
         </div>
-        <CardTitle className="font-serif text-3xl text-white">{title}</CardTitle>
+        {/* h2 instead of default h3 — fixes heading hierarchy skip (no parent h2 in hero section) */}
+        <h2 className="font-serif text-3xl font-semibold tracking-tight text-white">{title}</h2>
         <p className="max-w-2xl text-sm leading-6 text-white/90">{description}</p>
       </CardHeader>
 
@@ -153,12 +159,12 @@ const InquiryForm = ({
 
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-white/95" htmlFor="fullName">
+                <Label className="text-sm font-medium text-white/95" htmlFor={fid("fullName")}>
                   Parent or guardian name
                 </Label>
                 <Input
                   className={inputClasses}
-                  id="fullName"
+                  id={fid("fullName")}
                   placeholder="Enter parent name"
                   {...form.register("fullName")}
                 />
@@ -168,12 +174,12 @@ const InquiryForm = ({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-white/95" htmlFor="studentName">
+                <Label className="text-sm font-medium text-white/95" htmlFor={fid("studentName")}>
                   Student name
                 </Label>
                 <Input
                   className={inputClasses}
-                  id="studentName"
+                  id={fid("studentName")}
                   placeholder="Enter student name"
                   {...form.register("studentName")}
                 />
@@ -183,12 +189,12 @@ const InquiryForm = ({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-white/95" htmlFor="phone">
+                <Label className="text-sm font-medium text-white/95" htmlFor={fid("phone")}>
                   Phone number
                 </Label>
                 <Input
                   className={inputClasses}
-                  id="phone"
+                  id={fid("phone")}
                   inputMode="tel"
                   placeholder="+91 98XXXXXXXX"
                   {...form.register("phone")}
@@ -199,12 +205,12 @@ const InquiryForm = ({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-white/95" htmlFor="email">
+                <Label className="text-sm font-medium text-white/95" htmlFor={fid("email")}>
                   Email address
                 </Label>
                 <Input
                   className={inputClasses}
-                  id="email"
+                  id={fid("email")}
                   placeholder="Optional but helpful"
                   type="email"
                   {...form.register("email")}
@@ -215,12 +221,12 @@ const InquiryForm = ({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-white/95" htmlFor="classLevel">
+                <Label className="text-sm font-medium text-white/95" htmlFor={fid("classLevel")}>
                   Student class
                 </Label>
                 <Input
                   className={inputClasses}
-                  id="classLevel"
+                  id={fid("classLevel")}
                   placeholder="Example: Class 8"
                   {...form.register("classLevel")}
                 />
@@ -230,12 +236,12 @@ const InquiryForm = ({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-white/95" htmlFor="subjectInterest">
+                <Label className="text-sm font-medium text-white/95" htmlFor={fid("subjectInterest")}>
                   Subject support needed
                 </Label>
                 <Input
                   className={inputClasses}
-                  id="subjectInterest"
+                  id={fid("subjectInterest")}
                   placeholder="Maths, Science, English..."
                   {...form.register("subjectInterest")}
                 />
@@ -252,6 +258,7 @@ const InquiryForm = ({
               <div className="grid gap-3 sm:grid-cols-2">
                 {intentOptions.map((option) => {
                   const checked = form.watch("intent") === option;
+                  const inputId = fid(`intent-${option}`);
                   return (
                     <label
                       className={`cursor-pointer rounded-2xl border px-4 py-3 text-sm transition ${
@@ -260,9 +267,11 @@ const InquiryForm = ({
                           : "border-white/15 bg-white/6 text-white/78 hover:border-white/30"
                       }`}
                       key={option}
+                      htmlFor={inputId}
                     >
                       <input
                         className="sr-only"
+                        id={inputId}
                         type="radio"
                         value={option}
                         {...form.register("intent")}
@@ -281,6 +290,7 @@ const InquiryForm = ({
               <div className="flex flex-wrap gap-3">
                 {campusOptions.map((campus) => {
                   const checked = form.watch("preferredCampus") === campus;
+                  const inputId = fid(`campus-${campus}`);
                   return (
                     <label
                       className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition ${
@@ -289,9 +299,11 @@ const InquiryForm = ({
                           : "border-white/15 bg-white/6 text-white/78 hover:border-white/30"
                       }`}
                       key={campus}
+                      htmlFor={inputId}
                     >
                       <input
                         className="sr-only"
+                        id={inputId}
                         type="radio"
                         value={campus}
                         {...form.register("preferredCampus")}
@@ -304,12 +316,12 @@ const InquiryForm = ({
             </fieldset>
 
             <div className="space-y-2">
-              <Label className="text-white" htmlFor="message">
+              <Label className="text-white" htmlFor={fid("message")}>
                 Message
               </Label>
               <Textarea
                 className={textAreaClasses}
-                id="message"
+                id={fid("message")}
                 placeholder="Share any goals, exam concerns, or specific scheduling details."
                 {...form.register("message")}
               />

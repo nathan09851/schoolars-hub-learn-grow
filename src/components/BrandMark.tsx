@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.png";
+import logo from "@/assets-optimized/logo.webp";
 import { siteConfig } from "@/content/site";
 
 interface BrandMarkProps {
@@ -28,6 +28,9 @@ const BrandMark = ({
           alt={`${siteConfig.brandDisplayName} logo`}
           className="h-full w-full object-contain"
           loading="eager"
+          decoding="async"
+          width={compact ? 44 : 56}
+          height={compact ? 44 : 56}
           src={logo}
         />
       </div>

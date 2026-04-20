@@ -1,7 +1,58 @@
 /*
+  Netlify / Vercel edge headers
+  ─────────────────────────────────────────────────────
+  Rules apply top-to-bottom; more specific paths override the wildcard.
+*/
+
+/*
+  ── Global defaults ──────────────────────────────────
+*/
+/*
+  Cache-Control: public, max-age=0, must-revalidate
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://*.supabase.co; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: cross-origin
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://*.elevenlabs.io wss://*.elevenlabs.io; script-src 'self' 'unsafe-inline' https://elevenlabs.io https://unpkg.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+
+/*
+  ── Hashed Vite build assets (JS/CSS chunks) ─────────
+  Content-hashed filenames → safe to cache 1 year, immutable.
+*/
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  ── Self-hosted font files ────────────────────────────
+  Fonts never change (we version by filename), immutable for 1 year.
+*/
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/*
+  ── Optimized static image assets ────────────────────
+  These are content-hashed or named deterministically.
+*/
+/assets-static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/gallery-webp/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*
+  ── HTML pages ────────────────────────────────────────
+  Never cache HTML — always re-validate so users get fresh deploys.
+*/
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*
+  ── PWA manifest & service worker ────────────────────
+*/
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+  Content-Type: application/manifest+json

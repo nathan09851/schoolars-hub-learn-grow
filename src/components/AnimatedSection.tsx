@@ -130,31 +130,39 @@ export const AnimatedCounter = ({ value, className, delay = 0 }: AnimatedCounter
 
     const target = parseFloat(numMatch[0]);
     const isDecimal = numMatch[0].includes(".");
-    // Build prefix (e.g. "₹") and suffix (e.g. "+ reviews")
     const numStart = value.search(/[\d.]/);
     const prefix = numStart > 0 ? value.slice(0, numStart) : "";
     const suffix = value.slice(value.indexOf(numMatch[0]) + numMatch[0].length);
-    const steps = 36;
-    const interval = 800 / steps;
-    let count = 0;
 
-    const timer = setTimeout(() => {
-      const tick = setInterval(() => {
-        count++;
-        const current = target * (count / steps);
+    // Use requestAnimationFrame instead of setInterval — compositor-scheduled,
+    // zero main-thread blocking, automatically throttled when tab is hidden.
+    const DURATION = 800; // ms
+    let startTime: number | null = null;
+    let rafId: number;
+
+    const startDelay = setTimeout(() => {
+      const tick = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / DURATION, 1);
+        // Ease-out cubic for natural deceleration
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = target * eased;
         const formatted = isDecimal
           ? current.toFixed(1)
           : Math.floor(current).toString();
-        setDisplayed(`${prefix}${formatted}${suffix}`);
-        if (count >= steps) {
-          setDisplayed(value);
-          clearInterval(tick);
+        setDisplayed(progress < 1 ? `${prefix}${formatted}${suffix}` : value);
+        if (progress < 1) {
+          rafId = requestAnimationFrame(tick);
         }
-      }, interval);
-      return () => clearInterval(tick);
+      };
+      rafId = requestAnimationFrame(tick);
     }, delay);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(startDelay);
+      cancelAnimationFrame(rafId);
+    };
   }, [started, delay, value, numMatch, shouldAnimate]);
 
   return (
