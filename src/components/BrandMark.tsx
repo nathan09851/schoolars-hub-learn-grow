@@ -35,19 +35,19 @@ const BrandMark = ({
         />
       </div>
 
-      <div className="min-w-0">
+      <div className="flex flex-col justify-center min-w-0 leading-tight">
         <p
           className={`truncate font-serif font-semibold tracking-tight ${
-            compact ? "text-lg" : "text-2xl"
+            compact ? "text-lg md:text-xl" : "text-2xl"
           } ${titleClass}`}
         >
           {siteConfig.brandDisplayName}
         </p>
         {showSubtitle ? (
           <p
-            className={`truncate uppercase tracking-[0.22em] ${
-              compact ? "text-[10px]" : "text-[11px]"
-            } ${subtitleClass}`}
+            className={`truncate uppercase font-medium tracking-[0.24em] ${
+              compact ? "text-[9px] md:text-[10px]" : "text-[11px]"
+            } ${subtitleClass} mt-0.5`}
           >
             {siteConfig.brandSubtitle}
           </p>

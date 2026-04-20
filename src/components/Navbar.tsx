@@ -53,7 +53,7 @@ const Navbar = () => {
     <header ref={navRef} className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
         <div
-          className={`mesh-border flex items-center justify-between rounded-[24px] border border-white/60 bg-white/75 px-4 py-3 shadow-lg backdrop-blur-xl md:px-5 transition-all duration-300 ${
+          className={`mesh-border flex items-center justify-between rounded-[24px] border border-white/60 bg-white/75 px-3.5 py-2.5 shadow-lg backdrop-blur-xl md:px-5 md:py-3 transition-all duration-300 ${
             scrolled ? "shadow-xl bg-white/88 py-2" : ""
           }`}
         >

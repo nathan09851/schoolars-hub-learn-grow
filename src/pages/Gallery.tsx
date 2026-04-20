@@ -36,7 +36,7 @@ const galleryImages = [
   { id: 21, src: "/gallery-webp/IMG_1954.webp",  fallback: "/gallery-images/IMG_1954.JPG",  alt: "Student smiling for a photo at the event", category: "Trips & Events" },
   { id: 22, src: "/gallery-webp/IMG_2037.webp",  fallback: "/gallery-images/IMG_2037.JPG",  alt: "Candid moment of student life", category: "Trips & Events" },
   { id: 23, src: "/gallery-webp/IMG_2038.webp",  fallback: "/gallery-images/IMG_2038.JPG",  alt: "Friends enjoying the school trip together", category: "Trips & Events" },
-  { id: 24, src: "/gallery-webp/WhatsApp_Image_2026-04-08_at_3.31.34_PM.webp", fallback: "/gallery-images/WhatsApp Image 2026-04-08 at 3.31.34 PM.jpeg", alt: "Group photo of students and teachers", category: "Trips & Events" },
+  { id: 24, src: "/gallery-webp/WhatsApp_Image_2026-04-08_at_3_31_34_PM.webp", fallback: "/gallery-images/WhatsApp Image 2026-04-08 at 3.31.34 PM.jpeg", alt: "Group photo of students and teachers", category: "Trips & Events" },
 ];
 
 const Gallery = () => {
