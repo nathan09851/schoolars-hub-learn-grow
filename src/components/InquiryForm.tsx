@@ -97,12 +97,14 @@ const InquiryForm = ({
     <Card
       className={[
         "overflow-hidden rounded-[28px] border border-slate-800/60 bg-slate-900/95 shadow-2xl backdrop-blur-xl",
+        "flex flex-col lg:flex-row",
         className,
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      <CardHeader className="space-y-3 border-b border-white/10 bg-slate-950/50">
+      <div className="flex-1 lg:w-1/3 lg:max-w-sm border-b lg:border-b-0 lg:border-r border-white/10 bg-slate-950/50 p-6 sm:p-8">
+        <div className="space-y-3">
         <div className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">
           <ShieldCheck className="h-3.5 w-3.5" />
           Secure inquiry flow
@@ -110,9 +112,11 @@ const InquiryForm = ({
         {/* h2 instead of default h3 — fixes heading hierarchy skip (no parent h2 in hero section) */}
         <h2 className="font-serif text-3xl font-semibold tracking-tight text-white">{title}</h2>
         <p className="max-w-2xl text-sm leading-6 text-white/90">{description}</p>
-      </CardHeader>
+        </div>
+      </div>
 
-      <CardContent className="space-y-6 bg-slate-900/60 p-6 sm:p-8">
+      <div className="flex-[2] bg-slate-900/60 p-6 sm:p-8">
+        <CardContent className="space-y-6 h-full p-0">
         {isSubmitted ? (
           <div
             aria-live="polite"
@@ -375,7 +379,8 @@ const InquiryForm = ({
             </div>
           </form>
         )}
-      </CardContent>
+        </CardContent>
+      </div>
     </Card>
   );
 };

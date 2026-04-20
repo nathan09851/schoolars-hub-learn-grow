@@ -1,16 +1,28 @@
 import { ExternalLink, ShieldCheck, Star } from "lucide-react";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const InquiryForm = lazy(() => import("@/components/InquiryForm"));
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import SectionTitle from "@/components/SectionTitle";
 import TestimonialCard from "@/components/TestimonialCard";
+import ReviewForm from "@/components/ReviewForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { siteConfig, testimonials } from "@/content/site";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { siteConfig, testimonials as staticTestimonials } from "@/content/site";
+import { fetchReviews } from "@/services/reviews";
 
 const Testimonials = () => {
+  const [reviewDialogOpen, setReviewDialogOpen] = useState(false);
+
+  const { data: dynamicReviews = [] } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: fetchReviews,
+  });
+
+  const allReviews = [...dynamicReviews, ...staticTestimonials];
   const reviewsJsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -21,7 +33,7 @@ const Testimonials = () => {
       reviewCount: "40",
       bestRating: "5",
     },
-    review: testimonials.map((testimonial) => ({
+    review: allReviews.map((testimonial) => ({
       "@type": "Review",
       author: { "@type": "Person", name: testimonial.name },
       reviewRating: {
@@ -44,13 +56,13 @@ const Testimonials = () => {
 
       <section className="section-shell pt-8" aria-labelledby="reviews-hero-heading">
         <div className="container px-4">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+          <div className="flex flex-col gap-10">
             <div className="surface-panel mesh-border p-7 md:p-8">
               <SectionTitle
                 centered={false}
                 eyebrow="Verified reviews"
                 id="reviews-hero-heading"
-                subtitle="See what real parents and students say about their experience. All reviews are from our verified Google listing."
+                subtitle="See what real parents and students say about their experience. All reviews are from our verified Google listing and site submissions."
                 title="Trusted by families across Goa"
               />
 
@@ -72,7 +84,7 @@ const Testimonials = () => {
                     <p className="font-serif text-3xl font-bold text-foreground">
                       40+
                     </p>
-                    <p className="text-sm text-slate-600">Google reviews</p>
+                    <p className="text-sm text-slate-600">Google & Site reviews</p>
                   </CardContent>
                 </Card>
                 <Card className="rounded-[22px] border-slate-900/8 bg-slate-50/80 shadow-none">
@@ -82,13 +94,13 @@ const Testimonials = () => {
                       Live
                     </p>
                     <p className="text-sm text-slate-600">
-                      Verified on Google
+                      Real feedback
                     </p>
                   </CardContent>
                 </Card>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button className="rounded-full px-7" size="lg" variant="hero" asChild>
                   <a
                     href={siteConfig.googleReviewsUrl}
@@ -100,12 +112,29 @@ const Testimonials = () => {
                     <ExternalLink aria-hidden="true" className="ml-1 h-4 w-4" />
                   </a>
                 </Button>
+                
+                <Dialog open={reviewDialogOpen} onOpenChange={setReviewDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="rounded-full px-7" size="lg" variant="outline">
+                      Write a review
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Write a review</DialogTitle>
+                      <DialogDescription>
+                        Share your experience with Schoolars Hub to help other families.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <ReviewForm onSuccessCallback={() => setReviewDialogOpen(false)} />
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
 
             <Suspense
               fallback={
-                <div className="h-[520px] animate-pulse rounded-[28px] bg-slate-900/40 border border-slate-800/60" aria-label="Loading inquiry form…" />
+                <div className="h-[200px] lg:h-[400px] animate-pulse rounded-[28px] bg-slate-900/40 border border-slate-800/60" aria-label="Loading inquiry form…" />
               }
             >
               <InquiryForm
@@ -129,11 +158,14 @@ const Testimonials = () => {
           />
 
           <div className="mt-10 grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial, index) => (
+            {allReviews.map((testimonial, index) => (
               <TestimonialCard
                 delay={index * 80}
                 key={`${testimonial.name}-${index}`}
-                {...testimonial}
+                name={testimonial.name}
+                role={testimonial.role}
+                content={testimonial.content}
+                rating={testimonial.rating}
               />
             ))}
           </div>

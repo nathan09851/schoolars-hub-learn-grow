@@ -20,16 +20,25 @@ const TestimonialCard = ({
 }: TestimonialCardProps) => {
   return (
     <AnimatedSection variant="fade-up" delay={delay}>
-      <Card className="mesh-border card-hover flex h-full flex-col rounded-[24px] border-white/50 bg-white/85 shadow-md">
-        <CardContent className="flex flex-1 flex-col gap-4 p-5">
-          {/* Icon + stars */}
-          <div className="flex items-center justify-between gap-3">
+      <Card className="mesh-border card-hover h-full rounded-[24px] border-white/50 bg-white/85 shadow-md">
+        <CardContent className="flex flex-col sm:flex-row gap-5 lg:gap-8 p-6 md:p-7">
+          {/* Avatar / Icon & Attribution side */}
+          <div className="flex flex-col gap-3 min-w-[200px] shrink-0 border-b sm:border-b-0 sm:border-r border-slate-200/60 pb-4 sm:pb-0 sm:pr-4">
             <div
               aria-hidden="true"
-              className="inline-flex rounded-xl bg-amber-100 p-2.5 text-amber-700 transition-transform duration-200 hover:scale-110"
+              className="inline-flex w-fit rounded-xl bg-amber-100 p-2.5 text-amber-700 transition-transform duration-200 hover:scale-[1.02]"
             >
-              <Quote className="h-7 w-7 sm:h-10 sm:w-10" />
+              <Quote className="h-6 w-6" />
             </div>
+            
+            <div className="mt-1">
+              <p className="text-sm font-semibold text-foreground">{name}</p>
+              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{role}</p>
+            </div>
+          </div>
+
+          {/* Quote & Rating side */}
+          <div className="flex flex-1 flex-col gap-3 justify-center">
             <div
               className="flex gap-0.5"
               role="img"
@@ -39,7 +48,7 @@ const TestimonialCard = ({
                 <Star
                   key={`${name}-${index}`}
                   aria-hidden="true"
-                  className={`h-3.5 w-3.5 transition-transform duration-150 ${
+                  className={`h-4 w-4 transition-transform duration-150 ${
                     index < rating
                       ? "fill-amber-400 text-amber-400"
                       : "text-slate-300"
@@ -48,17 +57,10 @@ const TestimonialCard = ({
                 />
               ))}
             </div>
-          </div>
 
-          {/* Quote */}
-          <p className="flex-1 text-sm sm:text-base leading-7 text-slate-700">
-            "{content}"
-          </p>
-
-          {/* Attribution */}
-          <div className="border-t border-slate-200 pt-3">
-            <p className="text-sm font-semibold text-foreground">{name}</p>
-            <p className="text-xs text-muted-foreground">{role}</p>
+            <p className="text-sm sm:text-base leading-7 text-slate-700 font-serif italic">
+              "{content}"
+            </p>
           </div>
         </CardContent>
       </Card>

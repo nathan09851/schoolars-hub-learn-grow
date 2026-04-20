@@ -27,7 +27,7 @@ const Subjects = () => {
 
       <section className="section-shell pt-8" aria-labelledby="subjects-hero-heading">
         <div className="container px-4">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+          <div className="flex flex-col gap-10">
             <div className="surface-panel mesh-border p-7 md:p-8">
               <SectionTitle
                 centered={false}

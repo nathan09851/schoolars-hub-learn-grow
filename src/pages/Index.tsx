@@ -99,10 +99,10 @@ const Index = () => {
               <div className="hero-orb hero-orb-cyan" style={{ width: 280, height: 280, top: '-10%', right: '10%' }} />
             </div>
 
-            {/* Content grid */}
-            <div className="relative grid gap-8 px-6 py-10 text-white sm:px-8 lg:grid-cols-[1fr_420px] lg:items-start lg:px-10 lg:py-12">
-              {/* Left column — headline + CTAs */}
-              <div className="max-w-2xl space-y-7">
+            {/* Content flex */}
+            <div className="relative flex flex-col gap-10 px-6 py-10 text-white sm:px-8 lg:px-10 lg:py-14">
+              {/* Top area — headline + CTAs */}
+              <div className="max-w-3xl space-y-7">
                 {/* eyebrow */}
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="section-eyebrow border-white/15 bg-white/10 text-white/80">
@@ -224,7 +224,7 @@ const Index = () => {
                 </a>
               </div>
 
-              {/* Right column — inquiry form (lazy-loaded, below-fold JS deferred) */}
+              {/* Bottom horizontal form — inquiry form (lazy-loaded, below-fold JS deferred) */}
               <Suspense
                 fallback={
                   <div className="h-[520px] animate-pulse rounded-[28px] bg-slate-900/40 border border-slate-800/60" aria-label="Loading inquiry form…" />

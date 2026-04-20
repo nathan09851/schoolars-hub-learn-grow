@@ -27,7 +27,7 @@ const Payments = () => {
 
       <section className="section-shell pt-8" aria-labelledby="fees-hero-heading">
         <div className="container px-4">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+          <div className="flex flex-col gap-10">
             <div className="surface-panel mesh-border p-7 md:p-8">
               <SectionTitle
                 centered={false}
@@ -93,7 +93,7 @@ const Payments = () => {
             title="Choose your plan"
           />
 
-          <div className="mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2">
+          <div className="mt-10 flex flex-col gap-6 sm:gap-8">
             {feePlans.map((plan) => {
               const amount = plan.monthlyFee.replace("INR ", "").replace(",", "");
               const paymentUrl = `upi://pay?pa=${siteConfig.upiId}&pn=${encodeURIComponent(
@@ -104,12 +104,13 @@ const Payments = () => {
 
               return (
                 <Card
-                  className={`mesh-border rounded-[28px] border-white/50 bg-white/88 shadow-md ${
+                  className={`mesh-border rounded-[28px] border-white/50 bg-white/88 shadow-md flex flex-col md:flex-row overflow-hidden ${
                     plan.popular ? "ring-2 ring-amber-300/60" : ""
                   }`}
                   key={plan.name}
                 >
-                  <CardHeader className="space-y-4">
+                  <div className="flex-1 border-b md:border-b-0 md:border-r border-slate-200/50 bg-white/40">
+                    <CardHeader className="space-y-4 h-full object-cover">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
                         <div className="text-xs font-semibold uppercase tracking-[0.22em] text-amber-700">
@@ -136,8 +137,10 @@ const Payments = () => {
                         {plan.description}
                       </p>
                     </div>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
+                    </CardHeader>
+                  </div>
+                  <div className="flex-[1.5] flex flex-col justify-center">
+                    <CardContent className="space-y-6 pt-6 md:pt-8 md:pl-8">
                     <ul className="space-y-3" aria-label={`${plan.name} features`}>
                       {plan.highlights.map((highlight) => (
                         <li
@@ -168,8 +171,9 @@ const Payments = () => {
                           Ask on WhatsApp
                         </a>
                       </Button>
-                    </div>
-                  </CardContent>
+                      </div>
+                    </CardContent>
+                  </div>
                 </Card>
               );
             })}
