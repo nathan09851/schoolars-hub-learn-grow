@@ -70,8 +70,16 @@
           "value": "same-origin"
         },
         {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        },
+        {
           "key": "Permissions-Policy",
           "value": "camera=(), geolocation=(), microphone=*"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://*.supabase.co https://*.elevenlabs.io wss://*.elevenlabs.io https://api.us.elevenlabs.io; script-src 'self' 'unsafe-inline' https://elevenlabs.io https://unpkg.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
         }
       ]
     }
